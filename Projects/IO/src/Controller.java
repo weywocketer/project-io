@@ -38,7 +38,7 @@ public class Controller {
         Document document ;
         Elements search_site ;//strony z wynikami wyszukiwania
         do {
-            document = connect.get();//łączenie
+            document = connect.get();//łączenie - strona z wyszukiwaniami
             search_site = document.select("a.pager-btn.arrow.right");
             Elements more_info = document.select("a.more-info"); //strona z produktem na Skapiec
             Elements compare_link = document.select("a.compare-link-1"); //strona z wieloma produktami w jednym sklepie
@@ -49,6 +49,7 @@ public class Controller {
                 Elements price = document.select("span.price.gtm_or_price");
                 Elements shipping = document.select("a.delivery-cost.link.gtm_oa_shipping");
                 Elements link = document.select("a.offer-row-item.gtm_or_row");
+
                 for (Element eh : price)
                 {
                     System.out.println(eh.text());
@@ -61,8 +62,6 @@ public class Controller {
                 {
                     System.out.println(eh.text());//link do produktu w sklepie
                 }
-
-
 
             }
             for (Element alem : compare_link) {
@@ -93,13 +92,6 @@ public class Controller {
         }while(search_site.size()==1);
 
     }
-
-
-
-
-
-
-
 
 
     public static void main(String[] args) throws IOException {
