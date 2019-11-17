@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form action="/IO_war_exploded/Request.jsp">
+<form  method="get" name="Servlet" action="Servlet">
   <label>Nazwa Produktu</label> <input type="text" name="name"  size="50"/>
   <label>Ilość</label> <input type="text" name="count"  size="50"/>
   <input type="submit" value="Szukaj" size="50"/>
