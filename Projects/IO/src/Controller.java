@@ -4,10 +4,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import javax.print.DocFlavor;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 //jeszcze potrzeba - pobrac nazwe XD, koszty dostawy,ocene
 //CENE SPRAWDZAĆ W PASKU WYSZUKIWAŃ BO JAK BEDZIE SIE WCHODZIĆ W STRONĘ TO ZAJMIE CIUT WIECEJ NIZ 15 SEKUND XD
 // warunki! czyli zakres cen, minalna ilosć opini 50
@@ -21,18 +19,10 @@ import java.util.List;
 public class Controller {
 
     //Skąpiec.pl
-    private String[] products = new String[5]; //lista produktow
-    private Double[] range = new Double[2]; // lista zakresów cen
-    private Double min_rate ; //min ocena sprzedawcow
+    private ArrayList<Product> products = new ArrayList<>(); //lista produktow
+    private ArrayList<String> links = new ArrayList<>(); //lista linków do kupienia
 
-//private ArrayList<>
-
-    //Search(Product[] products, Double[] range, Double min_rate)
-
-    public void Search() throws IOException {
-        min_rate = 4.0;
-        range[0] = 20.5;
-        range[1] = 30.0; //dane dla proby
+    public void Search(Product product) throws IOException {
 
         Connection connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/lalka/price");
         Document document ;
@@ -95,7 +85,11 @@ public class Controller {
 
 
     public static void main(String[] args) throws IOException {
+        Double[] range = new Double[2];
+        range[0] = 10.0;
+        range[1] = 20.0;
+        Product product = new Product("lalka", 5, range, 4.5);
        Controller controller = new Controller();
-       controller.Search();
+       controller.Search(product);
     }
 }

@@ -8,14 +8,14 @@
   <component name="ChangeListManager">
     <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/Request.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Servlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Request.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,6 +23,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="IO" />
@@ -163,6 +166,7 @@
       <workItem from="1574006406093" duration="44000" />
       <workItem from="1574006581570" duration="557000" />
       <workItem from="1574007838387" duration="3399000" />
+      <workItem from="1574031417179" duration="2654000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -171,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574008045125</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="eh2">
+      <created>1574031634480</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574031634480</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

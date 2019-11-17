@@ -1,5 +1,5 @@
 package com.controller;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,21 +11,21 @@ import java.io.PrintWriter;
 @WebServlet("/Servlet")
 public class Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // build HTML code
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        String userName = request.getParameter("name");
-        String password = request.getParameter("count");
-        out.println("<html>");
-        out.println("<body>");
-        out.println("Hello " + "  " + userName + "welcome to my blog");
-        out.println("Your password is : " + "  " + password + "<br>");
-        out.println("</body></html>");
+        String name = request.getParameter("name");
+        String count = request.getParameter("count");
+        String min_rate = request.getParameter("min_rate");
+        String range1 = request.getParameter("range1");
+        String range2= request.getParameter("range2");
+        String destination = "index.jsp";
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(destination);
+        requestDispatcher.forward(request, response);
+
     }
 
 }
