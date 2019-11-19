@@ -24,26 +24,59 @@ public class Controller {
 
     public void Search(Product product) throws IOException {
 
-        Connection connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/lalka/price");
+        Connection connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/"+product.Get_Name()+"/price");
         Document document ;
         Elements search_site ;//strony z wynikami wyszukiwania
         do {
             document = connect.get();//łączenie - strona z wyszukiwaniami
+            // trzeba jeszcze opcje gdy pojawi się 1 produkt - bo wtedy nic nie znajduje XDD
             search_site = document.select("a.pager-btn.arrow.right");
+            Elements start_price = document.select("a.box"); //strona z produktem na Skapiec
             Elements more_info = document.select("a.more-info"); //strona z produktem na Skapiec
             Elements compare_link = document.select("a.compare-link-1"); //strona z wieloma produktami w jednym sklepie
+
 
             for (Element alem : more_info) {
                 connect = Jsoup.connect("https://www.skapiec.pl" + alem.attr("href"));
                 document = connect.get();//łączenie
+                Elements name = document.select("h1");
                 Elements price = document.select("span.price.gtm_or_price");
                 Elements shipping = document.select("a.delivery-cost.link.gtm_oa_shipping");
                 Elements link = document.select("a.offer-row-item.gtm_or_row");
-
+/*
+                for (Element eh : name )
+                {
+                    System.out.println("Name: " + eh.text());
+                }
+*/
                 for (Element eh : price)
                 {
-                    System.out.println(eh.text());
+                    Double double_price = Double.parseDouble(eh.text().substring(0,eh.text().length()-2).replace(",","."));
+                    if(double_price<product.get_Range()[1] && double_price>product.get_Range()[0] ){
+
+                        for (Element eh2 : name )
+                        {
+                            System.out.println("Name: " + eh2.text());
+                        }
+
+                        System.out.println("Cena:" + double_price);
+
+                        for (Element eh3 : shipping )
+                        {
+                            System.out.println(eh3.text());//tutaj trzeba link i wziąć przesyłkę itd
+                        }
+
+                        for (Element eh4 : link )
+                        {
+                            //działa XD
+                           // System.out.println("https://www.skapiec.pl"+eh4.attr("href"));//link do produktu w sklepie
+                            product.Set_link("https://www.skapiec.pl"+eh4.attr("href"));
+
+                        }
+
+                    }
                 }
+                /*
                 for (Element eh : shipping )
                 {
                     System.out.println(eh.text());//tutaj trzeba link i wziąć przesyłkę itd
@@ -52,8 +85,9 @@ public class Controller {
                 {
                     System.out.println(eh.text());//link do produktu w sklepie
                 }
-
+*/
             }
+            /*
             for (Element alem : compare_link) {
                 connect = Jsoup.connect("https://www.skapiec.pl" + alem.attr("href"));
                 document = connect.get();//łączenie
@@ -73,8 +107,10 @@ public class Controller {
                     System.out.println(eh.text());//link do produktu w sklepie
                 }
 
-            }
 
+
+            }
+                 */
             for (Element elem : search_site) {
                 connect = Jsoup.connect("https://www.skapiec.pl" + elem.attr("href"));
             }
@@ -87,9 +123,10 @@ public class Controller {
     public static void main(String[] args) throws IOException {
         Double[] range = new Double[2];
         range[0] = 10.0;
-        range[1] = 20.0;
-        Product product = new Product("lalka", 5, range, 4.5);
+        range[1] = 40.0;
+        Product product = new Product("lalka h", 5, range, 4.5);
        Controller controller = new Controller();
        controller.Search(product);
+        System.out.printf(product.Get_Link());
     }
 }
