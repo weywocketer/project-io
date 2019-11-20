@@ -70,7 +70,6 @@ public class Controller {
                         {
                             //działa XD
                            // System.out.println("https://www.skapiec.pl"+eh4.attr("href"));//link do produktu w sklepie
-                            product.Set_link("https://www.skapiec.pl"+eh4.attr("href"));
 
                         }
 
@@ -127,6 +126,5 @@ public class Controller {
         Product product = new Product("lalka h", 5, range, 4.5);
        Controller controller = new Controller();
        controller.Search(product);
-        System.out.printf(product.Get_Link());
     }
 }
