@@ -69,14 +69,8 @@ public class Controller {
                                     //działa XD
                                     // System.out.println("https://www.skapiec.pl"+eh4.attr("href"));//link do produktu w sklepie
                                     url_link = "https://www.skapiec.pl" + eh4.attr("href");
+                                    System.out.println(url_link);
 
-                                }
-
-                                for (int i = 0; i < 3; i++) {
-                                    if (results[1][i] != null) {
-                                        results[1][i] = new Result(product.Get_Name(), url_link);
-                                        System.out.println(results[1][i].getLink());
-                                    }
                                 }
 
                             //}

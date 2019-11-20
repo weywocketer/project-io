@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -172,7 +171,7 @@
       <workItem from="1574007838387" duration="3399000" />
       <workItem from="1574031417179" duration="2799000" />
       <workItem from="1574195355118" duration="3391000" />
-      <workItem from="1574279606905" duration="3201000" />
+      <workItem from="1574279606905" duration="3563000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -216,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574279804056</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="yare yare">
+      <created>1574282825292</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1574282825292</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +243,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="eh2" />
-    <option name="LAST_COMMIT_MESSAGE" value="eh2" />
+    <MESSAGE value="yare yare" />
+    <option name="LAST_COMMIT_MESSAGE" value="yare yare" />
   </component>
 </project>
