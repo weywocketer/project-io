@@ -35,18 +35,16 @@ public class Controller {
             search_site = document.select("a.pager-btn.arrow.right");
             Elements box = document.select("div.box-row.js"); //box
 
-            Elements more_info = document.select("a.more-info"); //strona z produktem na Skapiec
-            Elements compare_link = document.select("a.compare-link-1"); //strona z produktem w wielu sklepach
+            Elements more_info;// = document.select("a.more-info"); //strona z produktem na Skapiec
+            Elements compare_link ;//= document.select("a.compare-link-1"); //strona z produktem w wielu sklepach
 
             for (Element box1 : box) {
                 Double box2 = Double.parseDouble(box1.select("strong.price.gtm_sor_price").text().replace(" zł", "").replace(",", ".").replace("od ", ""));
                 if (box2 >= product.get_Range()[0] && box2 <= product.get_Range()[1]) {
-                    System.out.println(box2);
-                    more_info = box1.select("a.more-info");
-                    System.out.println(more_info.attr("href"));
+                    //System.out.println(box2);
+                    more_info = box1.select("a.more-info"); //jeden produkt jeden sklep
 
                     connect = Jsoup.connect("https://www.skapiec.pl" + more_info.attr("href"));
-
                     document = connect.get();//łączenie
                     Elements name = document.select("h1");
                     // do ifów
@@ -89,6 +87,63 @@ public class Controller {
                             }
                         }
                     }
+
+                    compare_link = box1.select("a.compare-link-1"); //jeden produkt wiele sklepów
+                    connect = Jsoup.connect("https://www.skapiec.pl" + compare_link.attr("href"));
+                    document = connect.get();//łączenie
+                    name = document.select("h1");
+                    // do ifów
+                    Elements square = document.select("a.offer-row-item.gtm_or_row");
+                    price = document.select("span.price.gtm_or_price");
+                    shipping = document.select("a.delivery-cost.link.gtm_oa_shipping");
+                    link = document.select("a.offer-row-item.gtm_or_row");
+                    nr_opinions = document.select("span.counter"); //liczba opinii sklepu
+                    opinion = document.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
+                    for (Element eh : square) {
+
+                        price = eh.select("span.price.gtm_or_price");
+                        String url_link = "";
+                        //System.out.println(document.select("h1"));
+                        if (!price.text().isEmpty()) {
+                            Double double_price = Double.parseDouble(price.text().replace(" zł", "").replace(",", ".").replace(" ", ""));
+                            if (double_price < product.get_Range()[1] && double_price > product.get_Range()[0]) {
+                                nr_opinions = eh.select("span.counter");
+                                for (Element nr_opinion : nr_opinions) {
+                                    if (!nr_opinion.text().isEmpty()) { //sprawdzenie czy brak opinii
+                                        if (Integer.parseInt(nr_opinion.text()) >= 50) { //ograniczenie na liczbę opinii sklepu
+                                            if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
+                                                System.out.println("Cena:" + price.text());
+                                                for (Element eh2 : name) {
+                                                    System.out.println("Name: " + eh2.text());
+                                                }
+                                                shipping = eh.select("a.delivery-cost.link.gtm_oa_shipping");
+                                                for (Element eh3 : shipping) { //po kij shipping XD
+                                                    System.out.println(eh3.text());//tutaj trzeba link i wziąć przesyłkę itd
+                                                }
+                                                link = eh.select("a.offer-row-item.gtm_or_row");
+                                                for (Element eh4 : link) {
+                                                    //działa XD
+                                                    // System.out.println("https://www.skapiec.pl"+eh4.attr("href"));//link do produktu w sklepie
+                                                    url_link = "https://www.skapiec.pl" + eh4.attr("href");
+                                                    System.out.println(url_link);
+
+
+                                                }
+
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+
+
+
+
+
                 }
             }
 
