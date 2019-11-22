@@ -7,7 +7,7 @@ public class Product {
 
     public Product(String name, int count, Double[] range, Double min_rate)
     {
-        this.name = name;
+        this.name = name.replace(" ", "+"); // olus <3
         this.count = count;
         this.range = range;
         this.min_rate = min_rate;

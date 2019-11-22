@@ -17,4 +17,6 @@ public class Result {
     public void setName(String name){this.name = name;}
 
     public void setLink(String link){this.link = link;}
+
+
 }
