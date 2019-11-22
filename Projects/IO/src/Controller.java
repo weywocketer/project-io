@@ -5,13 +5,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-//jeszcze potrzeba - pobrac nazwe XD, koszty dostawy,ocene
-//CENE SPRAWDZAĆ W PASKU WYSZUKIWAŃ BO JAK BEDZIE SIE WCHODZIĆ W STRONĘ TO ZAJMIE CIUT WIECEJ NIZ 15 SEKUND XD
-// warunki! czyli zakres cen, minalna ilosć opini 50
+// koszty dostawy,ocene
 //jak brak opinii/kosztów to ignorujemy
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
 //jesli dwa produkty ta sama cena to bierzemy ten o lepszej opini sprzedawcy
 //brak licytacji
+//przerobić gwiazdki na %%
 
 //wynik nazwa produktu wraz z linkiem
 
@@ -28,6 +27,7 @@ public class Controller {
         Connection connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/" + product.Get_Name() + "/price");
         Document document;
         Elements search_site;//strony z wynikami wyszukiwania
+
         do {
             document = connect.get();//łączenie - strona z wyszukiwaniami
             // trzeba jeszcze opcje gdy pojawi się 1 produkt - bo wtedy nic nie znajduje XDD
@@ -49,11 +49,10 @@ public class Controller {
 
                 for (Element eh : price) {
                     String url_link = "";
-                    Double double_price = Double.parseDouble(eh.text().substring(0, eh.text().length() - 2).replace(",", "."));
+                    Double double_price = Double.parseDouble(eh.text().substring(0, eh.text().length() - 2).replace(",", ".").replace(" ", ""));
                     if (double_price < product.get_Range()[1] && double_price > product.get_Range()[0]) {
 
                         if (Integer.parseInt(nr_opinions.text())>= 50) { //ograniczenie na liczbę opinii sklepu
-                            //if (Integer.parseInt(eh1.text()) >= 50) {
 
                                 for (Element eh2 : name) {
                                     System.out.println("Name: " + eh2.text());
@@ -127,7 +126,7 @@ public class Controller {
             Double[] range = new Double[2];
             range[0] = 10.0;
             range[1] = 40.0;
-            Product product2 = new Product("lalka h", 5, range, 4.5);
+            Product product2 = new Product("dupa", 5, range, 4.5);
             //dodac produkty do tablicy
             // w search zrobić pętle po tablicy
             Controller controller = new Controller();
