@@ -31,7 +31,7 @@ public class Servlet extends HttpServlet {
         Product product = new Product(name,Integer.parseInt(count),range, min);
         Controller controller = new Controller();// coś nie pyka
         controller.Search(product);
-        request.setAttribute("lol", controller.getResults()[0].getName());
+        request.setAttribute("lol",name);
         request.getRequestDispatcher("result.jsp").forward(request, response);
 
     }
