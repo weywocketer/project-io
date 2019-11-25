@@ -29,7 +29,7 @@
     created /WEB-INF/tags/helloWorld.tag, imported it using the taglib
     directive, and used it!</p>
     <br>
-    <b><u>Result:</u></b>
+    <b><u>com.controller.Result:</u></b>
     <tags:helloWorld/>
   </body>
 </html>

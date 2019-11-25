@@ -11,6 +11,6 @@
     <title>Skąpiec.pl</title>
 </head>
 <body>
-
+${lol}
 </body>
 </html>

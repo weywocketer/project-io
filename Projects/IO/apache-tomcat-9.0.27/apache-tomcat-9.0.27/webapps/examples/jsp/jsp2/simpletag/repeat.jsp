@@ -31,7 +31,7 @@
     for loop.  The tag handler passes in the current invocation in a
     scoped variable called count, which can be accessed using the EL.</p>
     <br>
-    <b><u>Result:</u></b><br>
+    <b><u>com.controller.Result:</u></b><br>
     <mytag:repeat num="5">
       Invocation ${count} of 5<br>
     </mytag:repeat>

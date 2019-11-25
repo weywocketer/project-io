@@ -31,7 +31,7 @@
         <table border="1">
           <thead>
         <td><b>EL Expression</b></td>
-        <td><b>Result</b></td>
+        <td><b>com.controller.Result</b></td>
       </thead>
       <tr>
         <td>\${1}</td>

@@ -1,3 +1,5 @@
+package com.controller;
+
 public class Result {
 
     private String name;

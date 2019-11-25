@@ -41,6 +41,6 @@
       </jsp:setProperty>
     </jsp:useBean>
     <br>
-    Result: ${foo.bar}
+    com.controller.Result: ${foo.bar}
   </body>
 </html>

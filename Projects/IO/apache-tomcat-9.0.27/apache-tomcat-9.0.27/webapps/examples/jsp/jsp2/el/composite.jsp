@@ -36,7 +36,7 @@
           <thead>
         <td><b>EL Expression</b></td>
         <td><b>Type</b></td>
-        <td><b>Result</b></td>
+        <td><b>com.controller.Result</b></td>
       </thead>
       <tr>
         <td>\${'hello'} wo\${'rld'}</td>

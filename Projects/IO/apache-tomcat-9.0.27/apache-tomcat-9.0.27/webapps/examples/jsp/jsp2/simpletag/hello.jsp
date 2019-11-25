@@ -25,7 +25,7 @@
     <p>This tag handler simply echos "Hello, World!"  It's an example of
     a very basic SimpleTag handler with no body.</p>
     <br>
-    <b><u>Result:</u></b>
+    <b><u>com.controller.Result:</u></b>
     <mytag:helloWorld/>
   </body>
 </html>

@@ -1,3 +1,5 @@
+package com.controller;
+
 public class Product {
 
     private String name;

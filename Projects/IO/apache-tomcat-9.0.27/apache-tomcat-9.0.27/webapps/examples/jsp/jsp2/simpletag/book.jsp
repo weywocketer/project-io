@@ -27,7 +27,7 @@
     the page context with a BookBean.  Then, the books fields are printed
     in all caps.</p>
     <br>
-    <b><u>Result:</u></b><br>
+    <b><u>com.controller.Result:</u></b><br>
     <my:findBook var="book"/>
     <table border="1">
         <thead>
