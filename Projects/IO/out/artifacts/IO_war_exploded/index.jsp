@@ -13,7 +13,7 @@
 <body>
 <!-- dodac ograniczenia na wpisywanie itd -->
 <form  method="get" name="Servlet" action="Servlet">
-  <label>Nazwa Produktu</label> <input type="text" name="name"  size="50"/>
+  <label>Nati2</label> <input type="text" name="name"  size="50"/>
   <label>Ilość</label> <input type="text" name="count"  size="50"/>
     <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate"  size="50"/>
     <d>Wpisz zakres cen</d>
