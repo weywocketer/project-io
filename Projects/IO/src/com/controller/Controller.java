@@ -25,7 +25,7 @@ public class Controller {
     //Skąpiec.pl
     private ArrayList<Product> products= new ArrayList<Product>(); //lista z produktami
     private Result[] results = new Result[3]; //tablica wynikow
-    double end_price; //żeby nie szukało dalej jak przekroczy max cenę
+
     //int help = 0; //aby przestało wyszukiwać gdy
 
     // bez com.controller.Product product, bedzie korzystac z tablic, niech wyrzuca tablice wynikow
@@ -80,11 +80,9 @@ public class Controller {
                                                 for (Element eh2 : name) {
                                                     System.out.println("Name: " + eh2.text());
                                                     product_name = eh2.text();
-
                                                 }
 
                                                 System.out.println("Cena:" + double_price);
-                                                end_price = double_price;
 
                                                 for (Element eh3 : shipping) { //po kij shipping XD
                                                     System.out.println("https://www.skapiec.pl" + eh3.attr("href"));//tutaj trzeba link i wziąć przesyłkę itd
@@ -138,7 +136,6 @@ public class Controller {
                                                 if (Integer.parseInt(nr_opinion.text()) >= 50) { //ograniczenie na liczbę opinii sklepu
                                                     if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
                                                         System.out.println("Cena:" + double_price);
-                                                        end_price = double_price;
                                                         for (Element eh2 : name) {
                                                             System.out.println("Name: " + eh2.text());
                                                             product_name = eh2.text();
@@ -184,7 +181,7 @@ public class Controller {
                     }
 
 
-                } while (search_site.size() == 1 || results[2] == null || end_price <= product.get_Range()[1]);
+                } while (search_site.size() == 1 || results[2] == null);
             }
     }
 

@@ -12,8 +12,8 @@
     <title>Skąpiec.pl</title>
 </head>
 <body>
-rozia
-<%--${lol}--%>
+${result11}
+${link11}
 <input type="button" value="Szukaj innych produktów"/>
 </body>
 </html>

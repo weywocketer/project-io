@@ -12,8 +12,6 @@ import java.io.PrintWriter;
 public class Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-        // build HTML code
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +29,8 @@ public class Servlet extends HttpServlet {
         Product product = new Product(name,Integer.parseInt(count),range, min);
         Controller controller = new Controller();// coś nie pyka
         controller.Search(product);
-        request.setAttribute("lol",controller.getResults()[0].getName());
+        request.setAttribute("result11",controller.getResults()[0].getName());
+        request.setAttribute("link11",controller.getResults()[0].getLink());
         request.getRequestDispatcher("result.jsp").forward(request, response);
 
     }
