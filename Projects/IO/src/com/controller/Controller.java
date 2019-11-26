@@ -15,6 +15,7 @@ import java.util.ArrayList;
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // TRZEBA DODAĆ ŻE JEŻELI CENA Z TEJ STRONY WYSZUKIWANA JEST WIĘKSZA NIŻ TO CO PODAJEMY TO ŻEBY PRZERWAŁO PRACE!!!
 // JEŻELI ZNALEZIONO TYLKO JEDEN PRODUKT to opcja
+// JEST GUZIK DARMOWA DOSTAWA.... EH
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -53,7 +54,7 @@ public class Controller {
                     Elements compare_link;//= document.select("a.compare-link-1"); //strona z produktem w wielu sklepach
 
                     for (Element box1 : box) {
-                        Double box2 = Double.parseDouble(box1.select("strong.price.gtm_sor_price").text().replace(" zł", "").replace(",", ".").replace("od ", ""));
+                        Double box2 = Double.parseDouble(box1.select("strong.price.gtm_sor_price").text().replace(" zł", "").replace(",", ".").replace("od ", "").replace(" ", ""));
                         if (box2 >= product.get_Range()[0] && box2 <= product.get_Range()[1]) {
                             //System.out.println(box2);
                             more_info = box1.select("a.more-info"); //jeden produkt jeden sklep
@@ -197,9 +198,9 @@ public class Controller {
 
         public static void main (String[]args) throws IOException {
             Double[] range = new Double[2];
-            range[0] = 10.0;
-            range[1] = 11.0;
-            Product product2 = new Product("placek banan", 5, range, 4.5);
+            range[0] = 100.0;
+            range[1] = 300.0;
+            Product product2 = new Product("chleb", 5, range, 4.5);
             //dodac produkty do tablicy
             // w search zrobić pętle po tablicy
             Controller controller = new Controller();
