@@ -6,7 +6,7 @@ public class Result {
     private String link;
     private Double cost;
     private Double shipping;
-    private Double sum = cost+shipping;
+    private Double sum;
 
 
     public Result(){}
@@ -21,6 +21,7 @@ public class Result {
         this.cost = cost;
         this.shipping = shipping;
         this.link = link;
+        this.sum = cost + shipping;
     }
 
     public String getName(){return name;}

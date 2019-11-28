@@ -10,6 +10,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controller/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Result.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Skapiec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -200,7 +202,8 @@
       <workItem from="1574778334460" duration="154000" />
       <workItem from="1574788685910" duration="1242000" />
       <workItem from="1574792305825" duration="355000" />
-      <workItem from="1574938448203" duration="6554000" />
+      <workItem from="1574938448203" duration="6797000" />
+      <workItem from="1574966638140" duration="9309000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -335,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574943420808</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="błedy są ale wrzucam :(">
+      <created>1574945648152</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1574945648152</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,6 +368,7 @@
     <MESSAGE value="eh2" />
     <MESSAGE value="yare yare" />
     <MESSAGE value="Nati" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nati" />
+    <MESSAGE value="błedy są ale wrzucam :(" />
+    <option name="LAST_COMMIT_MESSAGE" value="błedy są ale wrzucam :(" />
   </component>
 </project>

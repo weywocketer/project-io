@@ -187,6 +187,7 @@ public class Controller {
             }
     }
 
+
     public Result[] getResults()
     {
         return results;
