@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 
 
-public class Skapiec {
+public class Skapiec{
 
     //Skąpiec.pl
     //moze by inaczej to zrobic
@@ -82,7 +82,7 @@ public class Skapiec {
 
                                             for (Element eh3 : shipping) { //po kij shipping XD
                                                 System.out.println("https://www.skapiec.pl" + eh3.attr("href"));//tutaj trzeba link i wziąć przesyłkę itd
-
+                                                System.out.println(searchShipping("https://www.skapiec.pl" + eh3.attr("href")));
                                             }
 
 
@@ -132,26 +132,30 @@ public class Skapiec {
                                         if (!nr_opinion.text().isEmpty()) { //sprawdzenie czy brak opinii
                                             if (Integer.parseInt(nr_opinion.text()) >= 50) { //ograniczenie na liczbę opinii sklepu
                                                 if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
-                                                    System.out.println("Cena:" + double_price);
-                                                    for (Element eh2 : name) {
-                                                        System.out.println("Name: " + eh2.text());
-                                                        product_name = eh2.text();
+                                                    if (shipping.size() != 0) {
+                                                        for (Element eh3 : shipping) { //po kij shipping XD
+                                                            System.out.println("https://www.skapiec.pl" + eh3.attr("href"));//tutaj trzeba link i wziąć przesyłkę itd
+                                                            System.out.println(searchShipping("https://www.skapiec.pl" + eh3.attr("href")));
+                                                        }
+                                                        System.out.println("Cena:" + double_price);
+                                                        for (Element eh2 : name) {
+                                                            System.out.println("Name: " + eh2.text());
+                                                            product_name = eh2.text();
+
+                                                        }
+                                                        shipping = eh.select("a.delivery-cost.link.gtm_oa_shipping");
+
+                                                        link = eh.select("a.offer-row-item.gtm_or_row");
+                                                        for (Element eh4 : link) {
+                                                            //działa XD
+                                                            // System.out.println("https://www.skapiec.pl"+eh4.attr("href"));//link do produktu w sklepie
+                                                            url_link = "https://www.skapiec.pl" + eh4.attr("href");
+                                                            System.out.println(url_link);
+                                                            url = url_link;
+
+                                                        }
 
                                                     }
-                                                    shipping = eh.select("a.delivery-cost.link.gtm_oa_shipping");
-                                                    for (Element eh3 : shipping) { //po kij shipping XD
-                                                        System.out.println("https://www.skapiec.pl" + eh3.attr("href"));//tutaj trzeba link i wziąć przesyłkę itd
-                                                    }
-                                                    link = eh.select("a.offer-row-item.gtm_or_row");
-                                                    for (Element eh4 : link) {
-                                                        //działa XD
-                                                        // System.out.println("https://www.skapiec.pl"+eh4.attr("href"));//link do produktu w sklepie
-                                                        url_link = "https://www.skapiec.pl" + eh4.attr("href");
-                                                        System.out.println(url_link);
-                                                        url = url_link;
-
-                                                    }
-
                                                 }
                                             }
                                         }
@@ -175,25 +179,57 @@ public class Skapiec {
         }
     }
 
-    public String searchShipping(String url) throws IOException {
-        String shipping_price="";
+    public Double searchShipping(String url) throws IOException { //funkcja do znajdowania najmniejszego kosztu wysyłki
+        ArrayList<Double> shipping_prices = new ArrayList<Double>();
+        Double shipping_price;
         Connection connect = Jsoup.connect(url);
         Connection connect_shipping;
         Document document= connect.get();
-        Elements active_shipping = document.select("li.active");
+        Elements active_shipping = document.select("tr.even");
+        Elements active_shipping2 = document.select("tr.odd");
         Elements other_shipping = document.select("a");
         if(active_shipping.size()!=0) {
+            //System.out.println(active_shipping.text());
             for (Element shipping : active_shipping) {
-                System.out.println(shipping.attr("b"));
-                shipping_price = shipping.attr("b").replace(" ", "").replace(" zł", "");
+                System.out.println(shipping.select("b").text());
+                shipping_price = Double.parseDouble(shipping.attr("b").replace(" ", "").replace(" zł", ""));
+                shipping_prices.add(shipping_price);
+            }
+        }
+        if(active_shipping2.size()!=0) {
+            //System.out.println(active_shipping.text());
+            for (Element shipping : active_shipping2) {
+                System.out.println(shipping.select("b").text());
+                shipping_price = Double.parseDouble(shipping.attr("b").replace(" ", "").replace(" zł", ""));
+                shipping_prices.add(shipping_price);
             }
         }
         for (Element shipping: other_shipping){
             connect_shipping=Jsoup.connect("https://www.skapiec.pl/delivery.php"+shipping.attr("href"));
             document = connect_shipping.get();
+            Elements active_shipping3 = document.select("tr.even");
+            Elements active_shipping4 = document.select("tr.odd");
+            if(active_shipping3.size()!=0) {
+                //System.out.println(active_shipping.text());
+                for (Element shippingp : active_shipping3) {
+                    System.out.println(shippingp.select("b").text());
+                    shipping_price = Double.parseDouble(shipping.attr("b").replace(" ", "").replace(" zł", ""));
+                    shipping_prices.add(shipping_price);
+                }
+            }
+            if(active_shipping4.size()!=0) {
+                //System.out.println(active_shipping.text());
+                for (Element shippingp : active_shipping4) {
+                    System.out.println(shippingp.select("b").text());
+                    shipping_price = Double.parseDouble(shipping.attr("b").replace(" ", "").replace(" zł", ""));
+                    shipping_prices.add(shipping_price);
+                }
+            }
+
         }
 
-
+        shipping_prices.sort(Double::compareTo); //sortujemy od najmniejszej dostawy i wybieramy ją
+        shipping_price = shipping_prices.get(0);
         return shipping_price;
     }
 
@@ -213,7 +249,8 @@ public class Skapiec {
         //dodac produkty do tablicy
         // w search zrobić pętle po tablicy
         Skapiec controller = new Skapiec();
-        controller.Search(product2);
+        //controller.Search(product2);
+        controller.searchShipping("https://www.skapiec.pl/delivery.php?cp=84980201&dp=21&d=2971&t=2");
 
     }
 }
