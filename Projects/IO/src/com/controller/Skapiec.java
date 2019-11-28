@@ -15,11 +15,12 @@ import java.util.ArrayList;
 
 /// ZMIENIAMY ZAMYSŁ XDDDD -> w klasie Skapiec
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// TRZEBA DODAĆ ŻE JEŻELI CENA Z TEJ STRONY WYSZUKIWANA JEST WIĘKSZA NIŻ TO CO PODAJEMY TO ŻEBY PRZERWAŁO PRACE!!!
 // JEŻELI ZNALEZIONO TYLKO JEDEN PRODUKT to opcja
-// JEST GUZIK DARMOWA DOSTAWA.... EH
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//JAKOS OGRANICZYC TE STRONY XDDD
+//moze dodac funkcje zeby nie powtarzac tego kodu :(
+//watki :)
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 public class Skapiec{
@@ -58,78 +59,127 @@ public class Skapiec{
                 Elements compare_link;//= document.select("a.compare-link-1"); //strona z produktem w wielu sklepach
 
                 for (Element box1 : box) {
+
+                    /*
+                    class MultiTask implements Runnable{
+
+                        Document document;
+                        Product product;
+                        MultiTask(Document document, Product product){
+                            this.document = document;
+                            this.product = product;
+                        }
+                        @Override
+                        public void run() {
+                            try {
+                                Research(document, product);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    Thread t = new Thread(document,product);
+                    t.run();
+                    */
                     Double box2 = Double.parseDouble(box1.select("strong.price.gtm_sor_price").text().replace(" zł", "").replace(",", ".").replace("od ", "").replace(" ", ""));
                     if (box2 >= product.get_Range()[0] && box2 <= product.get_Range()[1]) {
-
                         //JEDEN PRODUKT JEDEN SKLEP
                         more_info = box1.select("a.more-info"); //jeden produkt jeden sklep
+
+
                         connect = Jsoup.connect("https://www.skapiec.pl" + more_info.attr("href"));
                         document = connect.get();//łączenie
                         Elements name = document.select("h1");
-                        Elements opinion = document.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
-                        Elements nr_opinions = document.select("span.counter"); //liczba opinii sklepu
-                        Elements shipping = document.select("a.delivery-cost.link.gtm_oa_shipping");
-                        Elements link = document.select("a.offer-row-item.gtm_or_row");
-                        /*
-                        // do ifów
-                        Elements price = document.select("span.price.gtm_or_price");
-                        */
+                        Elements opinion;// = document.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
+                        Elements nr_opinions;// = document.select("span.counter"); //liczba opinii sklepu
+                        Elements shipping;// = document.select("a.delivery-cost.link.gtm_oa_shipping");
+                        Elements free_shipping;// = document.select("a.delivery-cost.link.gtm_oa_shipping");
+                        Elements link;// = document.select("a.offer-row-item.gtm_or_row");
+                        Elements products = document.select("a.offer-row-item.gtm_or_row"); //wybieramy prostokaty
 
 
 
-                        /*
-                        for (Element eh : price) {
-                            String url_link = "";
-                            // do d. bo juz zassalismy price wczesniej
-                            Double double_price = Double.parseDouble(eh.text().replace(" zł", "").replace(",", ".").replace(" ", ""));
-                            result_cost = double_price;
-                            //if (double_price < product.get_Range()[1] && double_price > product.get_Range()[0]) {
-                                if (!nr_opinions.text().isEmpty()) { //sprawdzenie czy brak opinii
-                                    if (Integer.parseInt(nr_opinions.text()) >= 50) { //ograniczenie na liczbę opinii sklepu
+                        //Thread t = new Thread(new MultiTask(document,product));
+                        //t.run();
 
-                                        if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
+                        for(Element p: products)
+                        {
+                            if (!p.select("span.price.gtm_or_price").text().isEmpty()){
+                                //cena double
+                                Double p_product = Double.parseDouble(p.select("span.price.gtm_or_price").text().replace(" zł","").replace(" ","").replace(",","."));
+                                if (p_product>=product.get_Range()[0] && p_product<=product.get_Range()[1]){ //sprawdzamy cene
+                                    //liczba opinii
+                                    nr_opinions = p.select("span.counter"); //liczba opinii sklepu
+                                    if (!nr_opinions.text().isEmpty()) { //sprawdzenie czy brak opinii
+                                        if (Integer.parseInt(nr_opinions.text()) >= 50) {
+                                            //"gwiazdki"
+                                            opinion = p.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
+                                            if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
+                                                //link do mozliwych dostaw
+                                                shipping = p.select("a.delivery-cost.link.gtm_oa_shipping");
+                                                free_shipping = p.select("span.delivery-cost.free-delivery.badge.gtm_bdg_fd");
+                                                if(free_shipping.size()!=0){
+                                                    //nazwa wyniku
+                                                    result_name = name.text();
+                                                    System.out.println("Nazwa: "+result_name);
 
+                                                    //link do sklepu
+                                                    link = p.select("a.offer-row-item.gtm_or_row");
+                                                    result_link ="https://www.skapiec.pl" + link.attr("href");
+                                                    System.out.println("Link do sklepu: "+result_link);
 
-                                            for (Element eh3 : shipping) {
+                                                    //cena wyniku
+                                                    result_cost = p_product;
+                                                    System.out.println("Cena: "+result_cost);
 
-                                                if (searchShipping("https://www.skapiec.pl" + eh3.attr("href"))!= null) {
+                                                    //koszt dostawy
+                                                    result_shipping = 0.0;
+                                                    System.out.println("Dostawa: "+result_shipping);
 
-                                                    result_shipping = searchShipping("https://www.skapiec.pl" + eh3.attr("href"));
+                                                    results.add(new Result(result_name, result_link,result_cost,result_shipping));
+                                                }
+                                                else if (shipping.size() != 0) {
+                                                    //jezeli jest dostawa
+                                                    if ( searchShipping("https://www.skapiec.pl" + shipping.attr("href"))!= null) {
+                                                        //nazwa wyniku
+                                                        result_name = name.text();
+                                                        System.out.println("Nazwa: "+result_name);
 
-                                                    System.out.println("Shipping"+result_shipping);//przesylka
-                                                    for (Element eh2 : name) {
-                                                        System.out.println("Name: " + eh2.text());
-                                                        result_name = eh2.text();
+                                                        //link do sklepu
+                                                        link = p.select("a.offer-row-item.gtm_or_row");
+                                                        result_link ="https://www.skapiec.pl" + link.attr("href");
+                                                        System.out.println("Link do sklepu: "+result_link);
+
+                                                        //cena wyniku
+                                                        result_cost = p_product;
+                                                        System.out.println("Cena: "+result_cost);
+
+                                                        //koszt dostawy
+                                                        result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"));
+                                                        System.out.println("Dostawa: "+result_shipping);
+
+                                                        results.add(new Result(result_name, result_link,result_cost,result_shipping));
+
                                                     }
-                                                    for (Element eh4 : link) {
-                                                        //działa XD
-                                                        // System.out.println("https://www.skapiec.pl"+eh4.attr("href"));//link do produktu w sklepie
-                                                        url_link = "https://www.skapiec.pl" + eh4.attr("href");
-                                                        System.out.println(url_link);
-                                                        result_link = url_link;
-                                                    }
-
-                                                    System.out.println("Cena:" + double_price);
-
-                                                    results.add(new Result(result_name, result_link, result_cost, result_shipping));
-
-
                                                 }
                                             }
-
                                         }
-                                   // }
-
+                                    }
                                 }
                             }
-                        }   */
+                        }
+
+
 
 //-----------------------------jeden produkt wiele sklepów--------------------------------------------------------------
                         compare_link = box1.select("a.compare-link-1");
                         connect = Jsoup.connect("https://www.skapiec.pl" + compare_link.attr("href"));
                         document = connect.get();//łączenie
                         name = document.select("h1");
-                        Elements products = document.select("a.offer-row-item.gtm_or_row"); //wybieramy prostokaty w ktorych sa dane
+                        products = document.select("a.offer-row-item.gtm_or_row"); //wybieramy prostokaty w ktorych sa dane
+                        //Thread t2 = new Thread(new MultiTask(document,product));
+                        //t2.run();
+
                         for(Element p: products)
                         {
                             if (!p.select("span.price.gtm_or_price").text().isEmpty()){
@@ -143,8 +193,28 @@ public class Skapiec{
                                             //"gwiazdki"
                                              opinion = p.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
                                              if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
-                                                 //link do mozliwych dostaw
                                                  shipping = p.select("a.delivery-cost.link.gtm_oa_shipping");
+                                                 free_shipping = p.select("span.delivery-cost.free-delivery.badge.gtm_bdg_fd");
+                                                 if(free_shipping.size()!=0){
+                                                     //nazwa wyniku
+                                                     result_name = name.text();
+                                                     System.out.println("Nazwa: "+result_name);
+
+                                                     //link do sklepu
+                                                     link = p.select("a.offer-row-item.gtm_or_row");
+                                                     result_link ="https://www.skapiec.pl" + link.attr("href");
+                                                     System.out.println("Link do sklepu: "+result_link);
+
+                                                     //cena wyniku
+                                                     result_cost = p_product;
+                                                     System.out.println("Cena: "+result_cost);
+
+                                                     //koszt dostawy
+                                                     result_shipping = 0.0;
+                                                     System.out.println("Dostawa: "+result_shipping);
+
+                                                     results.add(new Result(result_name, result_link,result_cost,result_shipping));
+                                                 }
                                                  if (shipping.size() != 0) {
                                                      //jezeli jest dostawa
                                                      if ( searchShipping("https://www.skapiec.pl" + shipping.attr("href"))!= null) {
@@ -163,7 +233,7 @@ public class Skapiec{
 
                                                          //koszt dostawy
                                                          result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"));
-                                                         System.out.println("Dostawa: "+result_link);
+                                                         System.out.println("Dostawa: "+result_shipping);
 
                                                          results.add(new Result(result_name, result_link,result_cost,result_shipping));
 
@@ -181,8 +251,7 @@ public class Skapiec{
                 for (Element elem : search_site) { // przelacznie po kolejnych stronach wynikow wyszukiwania
                     connect = Jsoup.connect("https://www.skapiec.pl" + elem.attr("href"));
                 }
-                System.out.println(results.size());
-            }while (search_site.size() == 1 && results.size()<3 );
+            }while (search_site.size() == 1 && results.size()<100);
         }
     }
 
@@ -196,16 +265,16 @@ public class Skapiec{
         Document document= connect.get();
         Elements types_of_shipping = document.select("ul.menu").select("a"); //inne typy dostawy
         Elements active_shipping = document.select("table");//w domyślnej dostawie wybieramy koszty
-
+        Elements other_shipping = document.select("table");//w domyślnej dostawie wybieramy koszty
         if(types_of_shipping.size()!=0){ //jeżeli niepuste
             for (Element type_of_shipping : types_of_shipping)
             {
                 connect_shipping = Jsoup.connect("https://www.skapiec.pl/delivery.php"+type_of_shipping.attr("href"));
                 document = connect_shipping.get();
-                active_shipping = document.select("table#deliveryRulesets");
-                if(active_shipping.size()!=0) {
-                    active_shipping = active_shipping.select("b");
-                    for (Element cost : active_shipping){
+                other_shipping = document.select("table");
+                if(other_shipping.size()!=0) {
+                    other_shipping = other_shipping.select("b");
+                    for (Element cost : other_shipping){
                         //System.out.println(cost.text());
                         shipping_price = Double.parseDouble(cost.text().replace(" zł",""));
                         shipping_prices.add(shipping_price);
@@ -233,6 +302,8 @@ public class Skapiec{
         }
     }
 
+
+
     public ArrayList<Result> getResults() {return results;}
 
     public ArrayList<Product> getProducts() { return products;}
@@ -240,11 +311,14 @@ public class Skapiec{
 
     public static void main (String[]args) throws IOException {
         Double[] range = new Double[2];
-        range[0] = 100.0;
-        range[1] = 200.0;
+        range[0] = 25.0;
+        range[1] = 30.0;
         Product product2 = new Product("lalka", 5, range, 4.0);
         Skapiec controller = new Skapiec();
+        long start = System.currentTimeMillis();
         controller.Search(product2);
-
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        System.out.println(timeElapsed/1000+"s");
     }
 }
