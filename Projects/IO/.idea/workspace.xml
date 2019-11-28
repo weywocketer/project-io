@@ -7,15 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Servlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/result.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controller/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Result.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,9 +83,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.271">
+  <component name="RunManager" selected="Application.Skapiec">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.controller.Controller" />
+      <module name="IO" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Skapiec" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.controller.Skapiec" />
       <module name="IO" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -165,6 +170,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Skapiec" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.271" />
     </list>
@@ -195,7 +201,9 @@
       <workItem from="1574768775893" duration="1223000" />
       <workItem from="1574772848946" duration="448000" />
       <workItem from="1574778334460" duration="154000" />
-      <workItem from="1574788685910" duration="573000" />
+      <workItem from="1574788685910" duration="1242000" />
+      <workItem from="1574792305825" duration="355000" />
+      <workItem from="1574938448203" duration="4403000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -316,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574773279389</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Nati">
+      <created>1574789385111</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1574789385111</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

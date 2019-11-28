@@ -12,6 +12,8 @@ import java.util.ArrayList;
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
 //jesli dwa produkty ta sama cena to bierzemy ten o lepszej opini sprzedawcy
 
+
+/// ZMIENIAMY ZAMYSŁ XDDDD -> w klasie Skapiec
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // TRZEBA DODAĆ ŻE JEŻELI CENA Z TEJ STRONY WYSZUKIWANA JEST WIĘKSZA NIŻ TO CO PODAJEMY TO ŻEBY PRZERWAŁO PRACE!!!
 // JEŻELI ZNALEZIONO TYLKO JEDEN PRODUKT to opcja

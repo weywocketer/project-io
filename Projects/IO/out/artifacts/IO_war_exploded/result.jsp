@@ -14,6 +14,6 @@
 <body>
 ${result11}
 ${link11}
-<input type="button" action = "Servlet" value="Szukaj innych produktów"/>
+<input type="button" value="Szukaj innych produktów"/>
 </body>
 </html>
