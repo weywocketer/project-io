@@ -6,11 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/controller/MultiThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/controller/Skapiec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
-    </list>
+    <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +196,7 @@
       <workItem from="1574788685910" duration="1242000" />
       <workItem from="1574792305825" duration="355000" />
       <workItem from="1574938448203" duration="6797000" />
-      <workItem from="1574966638140" duration="15908000" />
+      <workItem from="1574966638140" duration="16012000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -349,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574976143269</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary=":(">
+      <created>1574982800956</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1574982800956</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -374,6 +377,7 @@
     <MESSAGE value="Nati" />
     <MESSAGE value="błedy są ale wrzucam :(" />
     <MESSAGE value="lepsze szybsze, wydajniejsze - niedokonczone" />
-    <option name="LAST_COMMIT_MESSAGE" value="lepsze szybsze, wydajniejsze - niedokonczone" />
+    <MESSAGE value=":(" />
+    <option name="LAST_COMMIT_MESSAGE" value=":(" />
   </component>
 </project>
