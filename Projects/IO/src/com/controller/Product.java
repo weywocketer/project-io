@@ -1,11 +1,14 @@
 package com.controller;
 
+import java.util.ArrayList;
+
 public class Product {
 
     private String name;
     private int count;
     private Double[] range;
     private Double min_rate;
+    private ArrayList<Result> results = new ArrayList<Result>();
 
     public Product(String name, int count, Double[] range, Double min_rate)
     {
@@ -28,6 +31,8 @@ public class Product {
 
     public Double Get_Min_Rate(){return min_rate;}
 
+    public ArrayList<Result> Get_Results(){return results;}
+
     public void Set_Min_Rate(Double min_rate){this.min_rate = min_rate;}
 
     public void Set_Range(Double[] range){this.range=range;}
@@ -39,6 +44,8 @@ public class Product {
     public void Set_Count(int count){
         this.count = count;
     }
+
+    public void Set_Count(ArrayList<Result> results){ this.results = results; }
 
 
     public static void main(String args[]){
