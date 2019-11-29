@@ -47,7 +47,6 @@ public class Product {
 
     public void Set_Count(ArrayList<Result> results){ this.results = results; }
 
-
     public static void main(String args[]){
 
     }

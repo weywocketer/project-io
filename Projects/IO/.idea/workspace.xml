@@ -8,6 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Skapiec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
     </list>
@@ -201,7 +203,7 @@
       <workItem from="1574792305825" duration="355000" />
       <workItem from="1574938448203" duration="6797000" />
       <workItem from="1574966638140" duration="16012000" />
-      <workItem from="1575024915732" duration="3601000" />
+      <workItem from="1575024915732" duration="4792000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -357,7 +359,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574982800956</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="hehehe threads, time ok">
+      <created>1575028719638</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1575028719638</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,6 +392,7 @@
     <MESSAGE value="błedy są ale wrzucam :(" />
     <MESSAGE value="lepsze szybsze, wydajniejsze - niedokonczone" />
     <MESSAGE value=":(" />
-    <option name="LAST_COMMIT_MESSAGE" value=":(" />
+    <MESSAGE value="hehehe threads, time ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="hehehe threads, time ok" />
   </component>
 </project>

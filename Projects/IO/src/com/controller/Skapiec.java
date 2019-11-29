@@ -28,7 +28,7 @@ public class Skapiec implements Runnable{
     //Skąpiec.pl
     //moze by inaczej to zrobic
     private ArrayList<Product> products = new ArrayList<Product>(); //lista z produktami
-   // private ArrayList<Result> results = new ArrayList<Result>(); //lista z wynikami
+    private ArrayList<Double> sum_cost = new ArrayList<Double>(); //lista z wynikami
     Element boxe;
     Product product;
 
@@ -76,6 +76,7 @@ public class Skapiec implements Runnable{
                 timeElapsed = finish - start;
             }while (search_site.size() == 1 && product.Get_Results().size()<100 && timeElapsed/1000<10);
         }
+
     }
 
     //funkcja szukająca najmniejszej dostawy
@@ -293,9 +294,24 @@ public class Skapiec implements Runnable{
 
     }
 
+    public void count_sum(){
+        for(Product product:products) {
+            for (int i=0;i<3; i++){
+                try {
+                    sum_cost.add(product.Get_Results().get(i).getSum());
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+        }
+    }
+
 
     public ArrayList<Product> getProducts() { return products;}
 
+    public ArrayList<Double> getSum_cost() { return sum_cost;}
 
     public static void main (String[]args) throws IOException {
         Double[] range = new Double[2];
@@ -303,14 +319,14 @@ public class Skapiec implements Runnable{
         range[1] = 30.0;
 
         Double[] range2 = new Double[2];
-        range[0] = 9.0;
-        range[1] = 11.0;
+        range2[0] = 9.0;
+        range2[1] = 11.0;
 
         Product product = new Product("lalka", 5, range, 4.0);
-        Product product2 = new Product("chleb saluteo", 5, range, 4.0);
-        Product product3 = new Product("chleb saluteo", 5, range, 4.0);
-        Product product4 = new Product("chleb saluteo", 5, range, 4.0);
-        Product product5 = new Product("chleb saluteo", 5, range, 4.0);
+        Product product2 = new Product("chleb saluteo", 5, range2, 4.0);
+        Product product3 = new Product("chleb saluteo", 5, range2, 4.0);
+        Product product4 = new Product("chleb saluteo", 5, range2, 4.0);
+        Product product5 = new Product("chleb saluteo", 5, range2, 4.0);
 
         Skapiec controller = new Skapiec();
         controller.getProducts().add(product);
@@ -336,7 +352,6 @@ public class Skapiec implements Runnable{
         }
         //////////////////////
 
-
         long start = System.currentTimeMillis();// czas rozpoczecia
         //
         //uruchamiamy wątki
@@ -349,6 +364,12 @@ public class Skapiec implements Runnable{
         System.out.println("Wyszukanu w ciągu:"+timeElapsed/1000+"s");
 
 ///////////////////////////////////////////////////
+
+        //zliczamy sume kosztow dla danego zestawienia
+        controller.count_sum();
+        for(Double sum: controller.getSum_cost()){
+            System.out.println(sum);
+        }
     }
 
     @Override
@@ -356,10 +377,10 @@ public class Skapiec implements Runnable{
         try{
            Research(this.boxe, this.product);
         }catch(Exception e){
-            System.out.println("Sth went wrong :(");
+            System.out.println();
+            e.printStackTrace();
         }
 
     }
-
 
 }
