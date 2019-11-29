@@ -12,13 +12,11 @@ import java.util.ArrayList;
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
 //jesli dwa produkty ta sama cena to bierzemy ten o lepszej opini sprzedawcy
 
+// posortować według ceny
 
 /// ZMIENIAMY ZAMYSŁ XDDDD -> w klasie Skapiec
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// JEŻELI ZNALEZIONO TYLKO JEDEN PRODUKT to opcja
-//JAKOS OGRANICZYC TE STRONY XDDD
-//moze dodac funkcje zeby nie powtarzac tego kodu :(
-//watki :)
+// JEŻELI ZNALEZIONO TYLKO JEDEN PRODUKT to opcja - olewamy XD
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
