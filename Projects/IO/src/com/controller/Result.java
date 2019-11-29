@@ -1,12 +1,13 @@
 package com.controller;
 
-public class Result {
+public class Result implements Comparable<Result>{
 
     private String name;
     private String link;
     private Double cost;
     private Double shipping;
     private Double sum;
+    private int shop_id; //id sklepu
 
 
     public Result(){}
@@ -16,12 +17,13 @@ public class Result {
         this.link = link;
     }
 
-    public Result(String name, String link, Double cost, Double shipping){
+    public Result(String name, String link, Double cost, Double shipping, Integer shop_id){
         this.name = name;
         this.cost = cost;
         this.shipping = shipping;
         this.link = link;
         this.sum = cost + shipping;
+        this.shop_id = shop_id;
     }
 
     public String getName(){return name;}
@@ -34,6 +36,8 @@ public class Result {
 
     public Double getSum(){return sum;}
 
+    public Integer getShop_id(){return shop_id;}
+
     public void setName(String name){this.name = name;}
 
     public void setLink(String link){this.link = link;}
@@ -42,6 +46,19 @@ public class Result {
 
     public void setShipping(Double shipping){this.shipping = shipping;}
 
+    public void setShop_id(Integer shop_id){this.shop_id = shop_id;}
 
+    @Override
+    public int compareTo(Result o) {
+        if(this.getCost()==o.getCost()){
+            return 0;
+        }
+        else if(this.getCost() > o.getCost()){
+            return 1;
+        }
+        else{
+            return -1;
+        }
+    }
 
 }

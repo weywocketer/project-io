@@ -200,7 +200,7 @@ public class Controller {
             Double[] range = new Double[2];
             range[0] = 100.0;
             range[1] = 300.0;
-            Product product2 = new Product("chleb", 5, range, 4.5);
+            Product product2 = new Product("chleb", 5, range);
             //dodac produkty do tablicy
             // w search zrobić pętle po tablicy
             Controller controller = new Controller();

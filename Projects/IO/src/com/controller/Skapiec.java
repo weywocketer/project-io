@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
-//jesli dwa produkty ta sama cena to bierzemy ten o lepszej opini sprzedawcy
 
 // posortować według ceny
+// wziac mac przesylke!
 
 /// ZMIENIAMY ZAMYSŁ XDDDD -> w klasie Skapiec
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -43,11 +43,6 @@ public class Skapiec implements Runnable{
             System.out.println("BRAK PRODUKTÓW");
         }
         else {
-            String result_name ="";
-            String result_link="";
-            Double result_cost;
-            Double result_shipping;
-
             long finish;
             long start = System.currentTimeMillis();
             long timeElapsed ;
@@ -70,9 +65,10 @@ public class Skapiec implements Runnable{
                 for (Element elem : search_site) { // przelacznie po kolejnych stronach wynikow wyszukiwania
                     connect = Jsoup.connect("https://www.skapiec.pl" + elem.attr("href"));
                 }
+                product.Get_Results().sort(Result::compareTo);
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
-            }while (search_site.size() == 1 && product.Get_Results().size()<100 && timeElapsed/1000<10);
+            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/500<10);
         }
 
     }
@@ -129,6 +125,7 @@ public class Skapiec implements Runnable{
         String result_link="";
         Double result_cost;
         Double result_shipping;
+        Integer result_shop_id;
         Double box2 = Double.parseDouble(box1.select("strong.price.gtm_sor_price").text().replace(" zł", "").replace(",", ".").replace("od ", "").replace(" ", ""));
         if (box2 >= product.get_Range()[0] && box2 <= product.get_Range()[1]) {
             //JEDEN PRODUKT JEDEN SKLEP
@@ -143,7 +140,8 @@ public class Skapiec implements Runnable{
             Elements shipping;//koszt dostawy
             Elements free_shipping;//darmowa dostawa
             Elements link;//link do sklepu
-            Elements products = document.select("a.offer-row-item.gtm_or_row"); //wybieramy prostokaty
+            Elements shop_ids;
+            Elements products = document.select("div.offers-list:nth-child(2) > ul:nth-child(1) > li:nth-child(1)"); //wybieramy prostokaty
 
             for(Element p: products)
             {
@@ -179,7 +177,13 @@ public class Skapiec implements Runnable{
                                         result_shipping = 0.0;
                                         //System.out.println("Dostawa: "+result_shipping);
 
-                                        product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping));
+                                        //id sklepu
+                                        shop_ids = p.select("li");
+                                        String shop_id = shop_ids.attr("data-dealer-id");
+                                        result_shop_id = Integer.parseInt(shop_id);
+                                        //System.out.println(shop_id);
+
+                                        product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping,result_shop_id));
                                     }
                                     else if (shipping.size() != 0) {
                                         //jezeli jest dostawa
@@ -201,7 +205,13 @@ public class Skapiec implements Runnable{
                                             result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"));
                                             //System.out.println("Dostawa: "+result_shipping);
 
-                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping));
+                                            //id sklepu
+                                            shop_ids = p.select("li");
+                                            String shop_id = shop_ids.attr("data-dealer-id");
+                                            result_shop_id = Integer.parseInt(shop_id);
+                                            //System.out.println(shop_id);
+
+                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping,result_shop_id));
 
                                         }
                                     }
@@ -219,7 +229,7 @@ public class Skapiec implements Runnable{
             connect = Jsoup.connect("https://www.skapiec.pl" + compare_link.attr("href"));
             document = connect.get();//łączenie
             name = document.select("h1");
-            products = document.select("a.offer-row-item.gtm_or_row"); //wybieramy prostokaty w ktorych sa dane
+            products = document.select("div.offers-list:nth-child(2) > ul:nth-child(1) > li:nth-child(1)"); //wybieramy prostokaty w ktorych sa dane
             //Thread t2 = new Thread(new MultiTask(document,product));
             //t2.run();
 
@@ -256,7 +266,13 @@ public class Skapiec implements Runnable{
                                         result_shipping = 0.0;
                                         //System.out.println("Dostawa: "+result_shipping);
 
-                                       product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping));
+                                        //id sklepu
+                                        shop_ids = p.select("li");
+                                        String shop_id = shop_ids.attr("data-dealer-id");
+                                        result_shop_id = Integer.parseInt(shop_id);
+                                        //System.out.println(shop_id);
+
+                                       product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping, result_shop_id));
                                     }
                                     if (shipping.size() != 0) {
                                         //jezeli jest dostawa
@@ -278,7 +294,13 @@ public class Skapiec implements Runnable{
                                             result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"));
                                             //System.out.println("Dostawa: "+result_shipping);
 
-                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping));
+                                            //id sklepu
+                                            shop_ids = p.select("li");
+                                            String shop_id = shop_ids.attr("data-dealer-id");
+                                            result_shop_id = Integer.parseInt(shop_id);
+                                            //System.out.println(shop_id);
+
+                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping,result_shop_id ));
 
                                         }
                                     }
@@ -291,19 +313,9 @@ public class Skapiec implements Runnable{
         }
 
     }
+    //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
+    public void select_results(){
 
-    public void count_sum(){
-        for(Product product:products) {
-            for (int i=0;i<3; i++){
-                try {
-                    sum_cost.add(product.Get_Results().get(i).getSum());
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-        }
     }
 
 
@@ -320,11 +332,11 @@ public class Skapiec implements Runnable{
         range2[0] = 9.0;
         range2[1] = 11.0;
 
-        Product product = new Product("lalka", 5, range, 4.0);
-        Product product2 = new Product("chleb saluteo", 5, range2, 4.0);
-        Product product3 = new Product("chleb saluteo", 5, range2, 4.0);
-        Product product4 = new Product("chleb saluteo", 5, range2, 4.0);
-        Product product5 = new Product("chleb saluteo", 5, range2, 4.0);
+        Product product = new Product("lalka", 5, range);
+        Product product2 = new Product("zeszyt", 5, range2);
+        Product product3 = new Product("chleb saluteo", 5, range2);
+        Product product4 = new Product("chleb saluteo", 5, range2);
+        Product product5 = new Product("chleb saluteo", 5, range2);
 
         Skapiec controller = new Skapiec();
         controller.getProducts().add(product);
@@ -356,6 +368,7 @@ public class Skapiec implements Runnable{
         for (Thread t:threads){
             t.run();
         }
+
         long finish = System.currentTimeMillis(); //czas zakonczenia
         long timeElapsed = finish - start; //czas trwania programu
 
@@ -364,10 +377,8 @@ public class Skapiec implements Runnable{
 ///////////////////////////////////////////////////
 
         //zliczamy sume kosztow dla danego zestawienia
-        controller.count_sum();
-        for(Double sum: controller.getSum_cost()){
-            System.out.println(sum);
-        }
+        //controller.count_sum();
+
     }
 
     @Override
@@ -380,5 +391,4 @@ public class Skapiec implements Runnable{
         }
 
     }
-
 }

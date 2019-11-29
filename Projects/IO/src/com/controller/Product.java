@@ -7,15 +7,14 @@ public class Product {
     private String name;
     private int count;
     private Double[] range;
-    private Double min_rate;
+    final private Double min_rate = 4.0;
     private ArrayList<Result> results = new ArrayList<Result>();
 
-    public Product(String name, int count, Double[] range, Double min_rate)
+    public Product(String name, int count, Double[] range)
     {
         this.name = name.replace(" ", "+"); // olus <3
         this.count = count;
         this.range = range;
-        this.min_rate = min_rate;
 
     }
 
@@ -33,7 +32,6 @@ public class Product {
 
     public ArrayList<Result> Get_Results(){return results;}
 
-    public void Set_Min_Rate(Double min_rate){this.min_rate = min_rate;}
 
     public void Set_Range(Double[] range){this.range=range;}
 

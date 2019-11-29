@@ -19,14 +19,12 @@ public class Servlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String name = request.getParameter("name");
         String count = request.getParameter("count");
-        String min_rate = request.getParameter("min_rate");
         String range1 = request.getParameter("range1");
         String range2= request.getParameter("range2");
         Double[] range = new Double[2];
         range[0] = Double.parseDouble(range1);
         range[1] =  Double.parseDouble(range2);
-        Double min = Double.parseDouble(min_rate);
-        Product product = new Product(name,Integer.parseInt(count),range, min);
+        Product product = new Product(name,Integer.parseInt(count),range);
         Controller controller = new Controller();// coś nie pyka
         controller.Search(product);
         request.setAttribute("result11",controller.getResults()[0].getName());
