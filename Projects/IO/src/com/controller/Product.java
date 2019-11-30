@@ -32,7 +32,6 @@ public class Product {
 
     public ArrayList<Result> Get_Results(){return results;}
 
-
     public void Set_Range(Double[] range){this.range=range;}
 
     public void Set_Name(String name){
@@ -44,6 +43,8 @@ public class Product {
     }
 
     public void Set_Count(ArrayList<Result> results){ this.results = results; }
+
+    public void Set_Results(ArrayList<Result> results){this.results = results;}
 
     public static void main(String args[]){
 

@@ -6,6 +6,7 @@ public class Result implements Comparable<Result>{
     private String link;
     private Double cost;
     private Double min_shipping;
+    private Double max_shipping;
     private Double sum;
     private int shop_id; //id sklepu
 
@@ -17,12 +18,13 @@ public class Result implements Comparable<Result>{
         this.link = link;
     }
 
-    public Result(String name, String link, Double cost, Double shipping, Integer shop_id){
+    public Result(String name, String link, Double cost, Double min_shipping,Double max_shipping, Integer shop_id){
         this.name = name;
         this.cost = cost;
-        this.min_shipping = shipping;
+        this.min_shipping = min_shipping;
+        this.max_shipping = max_shipping;
         this.link = link;
-        this.sum = cost + shipping;
+        this.sum = cost + min_shipping;
         this.shop_id = shop_id;
     }
 
@@ -32,7 +34,9 @@ public class Result implements Comparable<Result>{
 
     public Double getCost(){return cost;}
 
-    public Double getShipping(){return min_shipping;}
+    public Double getMin_Shipping(){return min_shipping;}
+
+    public Double getMax_shipping(){return max_shipping;}
 
     public Double getSum(){return sum;}
 

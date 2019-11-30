@@ -87,8 +87,9 @@ public class Skapiec{
 
     //funkcja szukająca najmniejszej dostawy
     //dziala
-    public Double searchShipping(String url) throws IOException{
+    public Double[] searchShipping(String url) throws IOException{
         ArrayList<Double> shipping_prices = new ArrayList<Double>();
+        Double[] max_min_ship_prices = new Double[2];
         Double shipping_price=0.0;
         Connection connect = Jsoup.connect(url);
         Connection connect_shipping;
@@ -123,8 +124,9 @@ public class Skapiec{
         if (shipping_prices.size()!=0)
         {
             shipping_prices.sort(Double::compareTo);
-            shipping_price = shipping_prices.get(0);
-            return shipping_price;
+            max_min_ship_prices[0] = shipping_prices.get(0);
+            max_min_ship_prices[1] = shipping_prices.get(shipping_prices.size()-1);
+            return max_min_ship_prices;
         }
         else
         {
@@ -136,7 +138,8 @@ public class Skapiec{
         String result_name ="";
         String result_link="";
         Double result_cost;
-        Double result_shipping;
+        Double min_result_shipping;
+        Double max_result_shipping;
         Integer result_shop_id;
         Double box2 = Double.parseDouble(box1.select("strong.price.gtm_sor_price").text().replace(" zł", "").replace(",", ".").replace("od ", "").replace(" ", ""));
         if (box2 >= product.get_Range()[0] && box2 <= product.get_Range()[1]) {
@@ -186,7 +189,8 @@ public class Skapiec{
                                         //System.out.println("Cena: "+result_cost);
 
                                         //koszt dostawy
-                                        result_shipping = 0.0;
+                                        min_result_shipping = 0.0;
+                                        max_result_shipping = 0.0;
                                         //System.out.println("Dostawa: "+result_shipping);
 
                                         //id sklepu
@@ -195,7 +199,7 @@ public class Skapiec{
                                         result_shop_id = Integer.parseInt(shop_id);
                                         //System.out.println(shop_id);
 
-                                        product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping,result_shop_id));
+                                        product.Get_Results().add(new Result(result_name, result_link,result_cost,min_result_shipping,max_result_shipping,result_shop_id));
                                     }
                                     else if (shipping.size() != 0) {
                                         //jezeli jest dostawa
@@ -214,7 +218,8 @@ public class Skapiec{
                                             //System.out.println("Cena: "+result_cost);
 
                                             //koszt dostawy
-                                            result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"));
+                                            min_result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"))[0];
+                                            max_result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"))[1];
                                             //System.out.println("Dostawa: "+result_shipping);
 
                                             //id sklepu
@@ -223,7 +228,7 @@ public class Skapiec{
                                             result_shop_id = Integer.parseInt(shop_id);
                                             //System.out.println(shop_id);
 
-                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping,result_shop_id));
+                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,min_result_shipping,max_result_shipping,result_shop_id));
 
                                         }
                                     }
@@ -275,7 +280,8 @@ public class Skapiec{
                                         //System.out.println("Cena: "+result_cost);
 
                                         //koszt dostawy
-                                        result_shipping = 0.0;
+                                        min_result_shipping = 0.0;
+                                        max_result_shipping = 0.0;
                                         //System.out.println("Dostawa: "+result_shipping);
 
                                         //id sklepu
@@ -284,7 +290,7 @@ public class Skapiec{
                                         result_shop_id = Integer.parseInt(shop_id);
                                         //System.out.println(shop_id);
 
-                                       product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping, result_shop_id));
+                                       product.Get_Results().add(new Result(result_name, result_link,result_cost,min_result_shipping,max_result_shipping, result_shop_id));
                                     }
                                     if (shipping.size() != 0) {
                                         //jezeli jest dostawa
@@ -303,7 +309,8 @@ public class Skapiec{
                                             //System.out.println("Cena: "+result_cost);
 
                                             //koszt dostawy
-                                            result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"));
+                                            min_result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"))[0];
+                                            max_result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"))[1];
                                             //System.out.println("Dostawa: "+result_shipping);
 
                                             //id sklepu
@@ -312,7 +319,7 @@ public class Skapiec{
                                             result_shop_id = Integer.parseInt(shop_id);
                                             //System.out.println(shop_id);
 
-                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,result_shipping,result_shop_id ));
+                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,min_result_shipping,max_result_shipping,result_shop_id ));
 
                                         }
                                     }
@@ -330,16 +337,11 @@ public class Skapiec{
     // EHHHHHHHHHHHHHHH
 
     public void select_results(){
-        for (int i=1;i<products.size();i++){
-            for(Result result:products.get(i).Get_Results()){
-                for(Result result1:products.get(0).Get_Results()){
-                    if(result.getShop_id()==result1.getShop_id()){
-                        result.setMin_Shipping(0.00);
-                    }
-                }
-            }
+        ArrayList<Result> results = new ArrayList<Result>();
+        for (Product product:products){
+            //results = product.Get_Results().sort(Result::compareTo);
+            //product.Set_Results(product.Get_Results().sort(Result::compareTo));
         }
-
 
     }
 
