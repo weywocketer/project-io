@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-
-public class Skapiec implements Runnable{
+// implements Runnable
+public class Skapiec{
 
     //Skąpiec.pl
     //moze by inaczej to zrobic
@@ -55,11 +55,23 @@ public class Skapiec implements Runnable{
 
                 Elements more_info;// = document.select("a.more-info"); //strona z produktem na Skapiec
                 Elements compare_link;//= document.select("a.compare-link-1"); //strona z produktem w wielu sklepach
-
+                ArrayList<Thread> threads = new ArrayList<Thread>();
                 for (Element box1 : box) {
                     this.boxe = box1;
                     this.product = product;
-                    run();
+                    //run();
+                    threads.add( new Thread(new Runnable() {
+                        public void run() {
+                            try {
+                                Research(box1, product);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }));
+                }
+                for (Thread t:threads){
+                    t.run();
                 }
 
                 for (Element elem : search_site) { // przelacznie po kolejnych stronach wynikow wyszukiwania
@@ -313,8 +325,21 @@ public class Skapiec implements Runnable{
         }
 
     }
+
     //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
+    // EHHHHHHHHHHHHHHH
+
     public void select_results(){
+        for (int i=1;i<products.size();i++){
+            for(Result result:products.get(i).Get_Results()){
+                for(Result result1:products.get(0).Get_Results()){
+                    if(result.getShop_id()==result1.getShop_id()){
+                        result.setMin_Shipping(0.00);
+                    }
+                }
+            }
+        }
+
 
     }
 
@@ -368,7 +393,6 @@ public class Skapiec implements Runnable{
         for (Thread t:threads){
             t.run();
         }
-
         long finish = System.currentTimeMillis(); //czas zakonczenia
         long timeElapsed = finish - start; //czas trwania programu
 
@@ -381,6 +405,7 @@ public class Skapiec implements Runnable{
 
     }
 
+    /*
     @Override
     public void run() {
         try{
@@ -391,4 +416,5 @@ public class Skapiec implements Runnable{
         }
 
     }
+     */
 }
