@@ -9,6 +9,8 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
+
   <title>SkąpiecPRO</title>
 
   <link rel="stylesheet" href="styles.scss">
@@ -66,7 +68,6 @@
             <h5>Do</h5> <input type="text" name="range2" size="50" id="input-cena" placeholder="Cena maksymalna" />
           </div>
         </div>
-        <input type="submit" value="Szukaj" size="50" />
       </form>
     </div>
 
@@ -91,7 +92,6 @@
             <h5>Do</h5> <input type="text" name="range2" size="50" id="input-cena" placeholder="Cena maksymalna" />
           </div>
         </div>
-        <input type="submit" value="Szukaj" size="50" />
       </form>
     </div>
 
@@ -115,7 +115,6 @@
             <h5>Do</h5> <input type="text" name="range2" size="50" id="input-cena" placeholder="Cena maksymalna" />
           </div>
         </div>
-        <input type="submit" value="Szukaj" size="50" />
       </form>
     </div>
 
@@ -139,9 +138,9 @@
             <h5>Do</h5> <input type="text" name="range2" size="50" id="input-cena" placeholder="Cena maksymalna" />
           </div>
         </div>
-        <input type="submit" value="Szukaj" size="50" />
       </form>
     </div>
+
 
   </div>
 

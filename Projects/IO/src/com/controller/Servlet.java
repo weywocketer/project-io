@@ -25,11 +25,20 @@ public class Servlet extends HttpServlet {
         range[0] = Double.parseDouble(range1);
         range[1] =  Double.parseDouble(range2);
         Product product = new Product(name,Integer.parseInt(count),range);
-        Controller controller = new Controller();// coś nie pyka
-        controller.Search(product);
-        request.setAttribute("result11",controller.getResults()[0].getName());
-        request.setAttribute("link11",controller.getResults()[0].getLink());
-        request.getRequestDispatcher("result.jsp").forward(request, response);
+        //Controller controller = new Controller();// coś nie pyka
+        Skapiec skapiec = new Skapiec();
+        skapiec.Search(product);
+        if(product.Get_Results().size()!=0) {
+            request.setAttribute("result11", product.Get_Results().get(0).getName());
+            request.setAttribute("link11", product.Get_Results().get(0).getLink());
+            request.getRequestDispatcher("result.jsp").forward(request, response);
+        }
+        else{
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Brak wyników! Spróbuj zmienić zakres cen!');");
+            out.println("location='index.jsp';");
+            out.println("</script>");
+        }
 
     }
 

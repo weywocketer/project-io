@@ -30,6 +30,7 @@
     <input type="button" value="Szukaj innych produktów" />
   </div>
 
+
 </body>
 
 </html>

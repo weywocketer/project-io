@@ -80,7 +80,7 @@ public class Skapiec{
                 product.Get_Results().sort(Result::compareTo);
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
-            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/500<10);
+            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<6);
         }
 
     }
@@ -162,12 +162,12 @@ public class Skapiec{
             {
                 if (!p.select("span.price.gtm_or_price").text().isEmpty()){
                     //cena double
-                    Double p_product = Double.parseDouble(p.select("span.price.gtm_or_price").text().replace(" zł","").replace(" ","").replace(",","."));
+                    Double p_product = Double.parseDouble(p.select("span.price.gtm_or_price").first().text().replace(" zł","").replace(" ","").replace(",","."));
                     if (p_product>=product.get_Range()[0] && p_product<=product.get_Range()[1]){ //sprawdzamy cene
                         //liczba opinii
                         nr_opinions = p.select("span.counter"); //liczba opinii sklepu
                         if (!nr_opinions.text().isEmpty()) { //sprawdzenie czy brak opinii
-                            if (Integer.parseInt(nr_opinions.text()) >= 50) {
+                            if (Integer.parseInt(nr_opinions.first().text()) >= 50) {
                                 //"gwiazdki"
                                 opinion = p.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
                                 if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
@@ -254,12 +254,12 @@ public class Skapiec{
             {
                 if (!p.select("span.price.gtm_or_price").text().isEmpty()){
                     //cena double
-                    Double p_product = Double.parseDouble(p.select("span.price.gtm_or_price").text().replace(" zł","").replace(" ","").replace(",","."));
+                    Double p_product = Double.parseDouble(p.select("span.price.gtm_or_price").first().text().replace(" zł","").replace(" ","").replace(",","."));
                     if (p_product>=product.get_Range()[0] && p_product<=product.get_Range()[1]){ //sprawdzamy cene
                         //liczba opinii
                         nr_opinions = p.select("span.counter"); //liczba opinii sklepu
                         if (!nr_opinions.text().isEmpty()) { //sprawdzenie czy brak opinii
-                            if (Integer.parseInt(nr_opinions.text()) >= 50) {
+                            if (Integer.parseInt(nr_opinions.first().text()) >= 50) {
                                 //"gwiazdki"
                                 opinion = p.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
                                 if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
@@ -352,8 +352,8 @@ public class Skapiec{
 
     public static void main (String[]args) throws IOException {
         Double[] range = new Double[2];
-        range[0] = 25.0;
-        range[1] = 30.0;
+        range[0] = 30.0;
+        range[1] = 40.0;
 
         Double[] range2 = new Double[2];
         range2[0] = 9.0;
