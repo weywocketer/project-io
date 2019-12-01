@@ -8,12 +8,29 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
-    <title>Skąpiec.pl</title>
+  <meta charset="UTF-8">
+
+  <title>SkąpiecPRO</title>
+
+  <link rel="stylesheet" href="styles.scss">
+
 </head>
+
 <body>
-${result11}
-${link11}
-<input type="button" value="Szukaj innych produktów"/>
+
+  <div class="result-page">
+    <div class="found-product">
+      <h4>${result11}</h4>
+    </div>
+    <div class="link-product">
+      <a href="${link11}">${link11}</a>
+    </div>
+    <input type="button" value="Szukaj innych produktów" />
+  </div>
+
+
 </body>
+
 </html>
