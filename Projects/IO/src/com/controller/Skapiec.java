@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
 
@@ -340,8 +341,27 @@ public class Skapiec{
 
     public void select_results(Product product){
         product.Get_Results().sort(Result::compareTo);
+        //product.Set_Results((ArrayList<Result>) product.Get_Results().subList(0,3));
+
+        for (int i=0; i<2; i++) { // dla kazdego zbioru produktow (results) obliczamy zbiorczy koszt wysylki
+            //product.Get_Results().get(i)
+            ArrayList<ArrayList> shops = new ArrayList<ArrayList>(); // w tej liscie trzymamy listy produktow o tych samych shop_id
+            for p in produktyDlaTychResultow {
+                for (shop:shops) {
+                    if p.Get_Results().get(i).getShop_id() == shop.get(0) { // jesli lista dla tego shop_id juz istnieje
+                        shop.add(p);
+                    }
+                    else{
+                        shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
+                        shops.get(shops.size() - 1).add(p);  // i dopisz p do tej listy
+                    }
+                }
+            }
+
+        }
 
 
+        }
     }
 
 
