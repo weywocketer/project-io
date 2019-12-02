@@ -82,6 +82,8 @@ public class Skapiec{
                 timeElapsed = finish - start;
             }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<6);
         }
+        //posortuj i wybierz
+        //select_results(product)
 
     }
 
@@ -336,8 +338,9 @@ public class Skapiec{
     //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
     // EHHHHHHHHHHHHHHH
 
-    public void select_results(){
-        ArrayList<Result> results = new ArrayList<Result>();
+    public void select_results(Product product){
+        product.Get_Results().sort(Result::compareTo);
+
 
     }
 

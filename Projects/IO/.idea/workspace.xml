@@ -7,13 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Servlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Skapiec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/styles.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -210,7 +204,7 @@
       <workItem from="1575129565607" duration="2366000" />
       <workItem from="1575135392843" duration="1090000" />
       <workItem from="1575224124054" duration="2310000" />
-      <workItem from="1575305392942" duration="1767000" />
+      <workItem from="1575305392942" duration="2108000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -415,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575226412601</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Nati">
+      <created>1575307357827</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1575307357827</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,12 +438,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="eh2" />
     <MESSAGE value="yare yare" />
-    <MESSAGE value="Nati" />
     <MESSAGE value="błedy są ale wrzucam :(" />
     <MESSAGE value="lepsze szybsze, wydajniejsze - niedokonczone" />
     <MESSAGE value=":(" />
     <MESSAGE value="hehehe threads, time ok" />
     <MESSAGE value="Rozia" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rozia" />
+    <MESSAGE value="Nati" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nati" />
   </component>
 </project>
