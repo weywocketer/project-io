@@ -34,10 +34,6 @@
           <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
         </div>
         <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
-        </div>
-        <div>
           <label>Cena</label>
           <div class="form-cena">
             <h5>Od</h5> <input type="text" name="range1" size="50" id="input-cena" placeholder="Cena minimalna" />
@@ -56,10 +52,6 @@
         </div>
         <div>
           <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
-        </div>
-        <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
         </div>
         <div>
           <label>Cena</label>
@@ -82,10 +74,6 @@
           <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
         </div>
         <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
-        </div>
-        <div>
           <label>Cena</label>
           <div class="form-cena">
             <h5>Od</h5> <input type="text" name="range1" size="50" id="input-cena" placeholder="Cena minimalna" />
@@ -105,10 +93,6 @@
           <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
         </div>
         <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
-        </div>
-        <div>
           <label>Cena</label>
           <div class="form-cena">
             <h5>Od</h5> <input type="text" name="range1" size="50" id="input-cena" placeholder="Cena minimalna" />
@@ -126,10 +110,6 @@
         </div>
         <div>
           <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
-        </div>
-        <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
         </div>
         <div>
           <label>Cena</label>

@@ -34,6 +34,8 @@ public class Servlet extends HttpServlet {
         skapiec.Search(product);
         if(product.Get_Results().size()!=0) {
             request.setAttribute("result11", product.Get_Results().get(0).getName());
+            request.setAttribute("cost11", product.Get_Results().get(0).getCost());
+            request.setAttribute("shipping11", product.Get_Results().get(0).getMin_Shipping());
             request.setAttribute("link11", product.Get_Results().get(0).getLink());
             request.getRequestDispatcher("result.jsp").forward(request, response);
         }

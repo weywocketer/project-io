@@ -360,6 +360,9 @@ public class Skapiec{
 
         }
 
+        //product.Set_Results(product.Get_Results().subList(0,3).toArray());
+
+
 
         }
     }

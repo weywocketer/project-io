@@ -29,6 +29,11 @@ body {
     display: inline;
     margin-top: 16px;
   }
+
+  h4 {
+    margin: 0;
+    margin-bottom: 5px;
+  }
   
   form {
     text-align: center;
@@ -50,12 +55,12 @@ body {
     font-weight: bold;
   }
   
-  .servlet-form-2,
-  .servlet-form-3,
-  .servlet-form-4,
-  .servlet-form-5 {
-    display: none;
-  }
+  //.servlet-form-2,
+  //.servlet-form-3,
+  //.servlet-form-4,
+  //.servlet-form-5 {
+  //  display: none;
+  //}
   
   .form-cena {
     display: flex;
@@ -85,10 +90,13 @@ body {
     color: #b52b65;
   }
 
-
   .back-to-homepage {
     background-color: #ffd0f8;
-      color: black;
-      text-transform: none;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    margin: 20px 0;
   }
   
