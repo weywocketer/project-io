@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="IO" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jsoup-1.11.3" />
+          <element id="library" level="project" name="Java EE 6-Java EE 6" />
+        </element>
       </element>
     </root>
   </artifact>

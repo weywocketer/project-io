@@ -8,7 +8,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
 
@@ -37,7 +36,7 @@ public class Skapiec{
         Document document= connect.get();
         Elements no_results = document.select("p.content"); //gdy brak wyników
         Elements search_site;//strony z wynikami wyszukiwania
-
+        System.out.println("hehe");
 
         if (no_results.text().equals("Brak produktów dla wyszukiwanej frazy."))
         {
@@ -81,7 +80,7 @@ public class Skapiec{
                 product.Get_Results().sort(Result::compareTo);
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
-            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<6);
+            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<8);
         }
         //posortuj i wybierz
         //select_results(product)
@@ -338,7 +337,7 @@ public class Skapiec{
 
     //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
     // EHHHHHHHHHHHHHHH
-
+/*
     public void select_results(Product product){
         product.Get_Results().sort(Result::compareTo);
         //product.Set_Results((ArrayList<Result>) product.Get_Results().subList(0,3));
@@ -360,12 +359,14 @@ public class Skapiec{
 
         }
 
+ */
+
         //product.Set_Results(product.Get_Results().subList(0,3).toArray());
 
 
 
-        }
-    }
+        //}
+    //}
 
 
     public ArrayList<Product> getProducts() { return products;}

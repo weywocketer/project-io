@@ -31,7 +31,7 @@
       Koszt dostawy: ${shipping11} PLN
     </div>
     <div class="link-product">
-      <a href="${link11}">${link11}</a>
+      <a href="${link11}">Link do produktu w sklepie</a>
     </div>
     <div class="back-container">
       <a class="back-to-homepage" href="index.jsp">Szukaj innych produktów</a>
