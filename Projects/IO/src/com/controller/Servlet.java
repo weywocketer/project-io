@@ -1,5 +1,6 @@
 package com.controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,9 @@ import java.io.PrintWriter;
 @WebServlet("/Servlet")
 public class Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        RequestDispatcher view = request.getRequestDispatcher("/Home.jsp");
+        view.include(request, response);
 
     }
 
@@ -39,6 +43,7 @@ public class Servlet extends HttpServlet {
             out.println("location='index.jsp';");
             out.println("</script>");
         }
+
 
     }
 

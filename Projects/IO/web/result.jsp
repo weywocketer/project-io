@@ -27,7 +27,7 @@
     <div class="link-product">
       <a href="${link11}">${link11}</a>
     </div>
-    <input type="button" value="Szukaj innych produktów" />
+    <a class="back-to-homepage" href="index.jsp">Szukaj innych produktów</a>
   </div>
 
 

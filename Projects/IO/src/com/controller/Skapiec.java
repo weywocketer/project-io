@@ -338,10 +338,6 @@ public class Skapiec{
 
     public void select_results(){
         ArrayList<Result> results = new ArrayList<Result>();
-        for (Product product:products){
-            //results = product.Get_Results().sort(Result::compareTo);
-            //product.Set_Results(product.Get_Results().sort(Result::compareTo));
-        }
 
     }
 
