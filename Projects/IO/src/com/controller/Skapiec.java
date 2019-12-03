@@ -345,14 +345,21 @@ public class Skapiec{
         //product.Set_Results((ArrayList<Result>) product.Get_Results().subList(0,3));
 
         ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
+
         teams.add(new ArrayList<Result>());
         teams.add(new ArrayList<Result>());
         teams.add(new ArrayList<Result>());
 
         for (Product p : products) {
-            teams.get(0).add(product.Get_Results().get(0));
-            teams.get(1).add(product.Get_Results().get(1));
-            teams.get(2).add(product.Get_Results().get(2));
+            try {
+                teams.get(0).add(product.Get_Results().get(0));
+                teams.get(1).add(product.Get_Results().get(1));
+                teams.get(2).add(product.Get_Results().get(2));
+
+            }
+            catch (Exception e) {
+
+            }
         }
 
 
@@ -366,26 +373,34 @@ public class Skapiec{
             for (Result r : team) {
                 if (shops.isEmpty()) {
                     shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
-                    shops.get(shops.size() - 1).add(r);  // i dopisz p do tej listy
+                    shops.get(0).add(r);  // i dopisz p do tej listy
                 } else {
-                    for (ArrayList<Result> shop : shops) {
-                        if (r.getShop_id() == shop.get(0).getShop_id()) { // jesli lista dla tego shop_id juz istnieje
-                            shop.add(r);
-                        } else {
-                            shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
-                            shops.get(shops.size() - 1).add(r);  // i dopisz p do tej listy
+                    //for (ArrayList<Result> shop : shops) {
+                    int i = 0;
+                    Boolean addNewList = true;
+                    while (i < shops.size()){
+                        if (r.getShop_id() == shops.get(i).get(0).getShop_id()) { // jesli lista dla tego shop_id juz istnieje
+                            shops.get(i).add(r);
+                            addNewList = false;
+                            break;
                         }
+                        i += 1;
+                    }
+                    if (addNewList) {
+                        shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
+                        shops.get(shops.size() - 1).add(r);  // i dopisz p do tej listy
                     }
                 }
             }
+        }
 
             Double summaryShipping = 0.0;
-            for (ArrayList<Result> shop : shops) {// i teraz tylko lecimy po tej liscie list i bierzemy maks. koszty dostawy dla kazdego sklepu
+            for (ArrayList<Result> shop : shops) {// i teraz bierzemy maks. koszty dostawy dla kazdego sklepu
                 shop.sort(Result::compareTo);
                 summaryShipping += shop.get(0).getMin_Shipping();
             }
             summaryShippings.add(summaryShipping);
-        }
+
         return summaryShippings;
     }
 
@@ -448,7 +463,8 @@ public class Skapiec{
         long finish = System.currentTimeMillis(); //czas zakonczenia
         long timeElapsed = finish - start; //czas trwania programu
 
-        System.out.println("Wyszukanu w ciągu:"+timeElapsed/1000+"s");
+        System.out.println("Wyszukanu w ciągu:"+timeElapsed/1000+" s");
+        System.out.println(controller.select_results().get(0));
 
 ///////////////////////////////////////////////////
 
