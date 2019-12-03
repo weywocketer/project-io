@@ -88,11 +88,13 @@ public class Servlet extends HttpServlet {
         // DODAĆ ŻEBY WYŚWIETLAŁO 3 I DLA KAŻDEGO PRODUKTU!!!
         for (int i = 0; i <skapiec.getProducts().size();i++) {
             if (skapiec.getProducts().get(i).Get_Results().size()!=0) {
-                request.setAttribute("result11", skapiec.getProducts().get(i).Get_Results().get(0).getName());
-                request.setAttribute("cost11", skapiec.getProducts().get(i).Get_Results().get(0).getCost());
-                request.setAttribute("shipping11", skapiec.getProducts().get(i).Get_Results().get(0).getMin_Shipping());
-                request.setAttribute("link11", skapiec.getProducts().get(i).Get_Results().get(0).getLink());
-                request.getRequestDispatcher("result.jsp").forward(request, response);
+                for(int j=0;i<skapiec.getProducts().get(i).Get_Results().size();i++) {
+                    request.setAttribute("result" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getName());
+                    request.setAttribute("result_cost" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getCost());
+                    request.setAttribute("shipping" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getMin_Shipping());
+                    request.setAttribute("link" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getLink());
+                    request.getRequestDispatcher("result.jsp").forward(request, response);
+                }
 
             } else {
                 out.println("<script type=\"text/javascript\">");
