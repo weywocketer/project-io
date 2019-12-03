@@ -10,3 +10,4 @@ function submitForms() {
 
 var submitButton = document.getElementById('submit-btn');
 submitButton.addEventListener('click', submitForms);
+

@@ -19,25 +19,25 @@
 </head>
 
 <body>
-
+<%-- jakis wielki napis WYNIKI
   <div class="result-page">
     <div class="found-product">
-      <h4>${result11}</h4>
+      <h4>${result00}</h4>
     </div>
     <div class="product-cost">
-      Koszt produktu: ${cost11} PLN
+      Koszt produktu: ${cost00} PLN
     </div>
     <div class="product-shipping">
-      Koszt dostawy: ${shipping11} PLN
+      Koszt dostawy: ${shipping00} PLN
     </div>
     <div class="link-product">
-      <a href="${link11}">Link do produktu w sklepie</a>
+      <a href="${link00}">Link do produktu w sklepie</a>
     </div>
     <div class="back-container">
       <a class="back-to-homepage" href="index.jsp">Szukaj innych produktów</a>
     </div>
 
-  </div>
+  </div> --%>
 
 
 </body>

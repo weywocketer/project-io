@@ -33,6 +33,7 @@ public class Servlet extends HttpServlet {
             if(!request.getParameter("name"+i).isEmpty()) {
                 try {
                     names.add(request.getParameter("name" + i));
+                    request.setAttribute("name"+i,request.getParameter("name" + i)); //nazwa wpisana przez użytkownika
                     counts.add(Integer.parseInt(request.getParameter("count" + i)));
                     Double[] range = new Double[2];
                     range[0] = Double.parseDouble(request.getParameter("range1" + i));
@@ -54,8 +55,17 @@ public class Servlet extends HttpServlet {
         Skapiec skapiec = new Skapiec();
 
         //tworzymy obiekty klasy Product i dodajemy do naszej listy produktow klasy Skapiec
-        for(int i =0;i<names.size();i++){
-           skapiec.getProducts().add(new Product(names.get(i),counts.get(i),ranges.get(i)));
+        if(names.isEmpty())
+        {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Wprowadź jakieś dane!');");
+            out.println("location='index.jsp';");
+            out.println("</script>");
+        }
+        else {
+            for (int i = 0; i < names.size(); i++) {
+                skapiec.getProducts().add(new Product(names.get(i), counts.get(i), ranges.get(i)));
+            }
         }
 
         //tworzymy watek dla kazdego produktu z naszej listy
@@ -89,6 +99,27 @@ public class Servlet extends HttpServlet {
         for (int i = 0; i <skapiec.getProducts().size();i++) {
             if (skapiec.getProducts().get(i).Get_Results().size()!=0) {
                 for(int j=0;i<skapiec.getProducts().get(i).Get_Results().size();i++) {
+
+                    out.println("<div class=\"result-page\">");
+                    out.println("<div class=\"found-product\">");
+                    out.println("<h4>"+skapiec.getProducts().get(i).Get_Results().get(j).getName()+"</h4>");
+                    out.println("</div>");
+                    out.println("<div class=\"product-cost\">");
+                    out.println("Koszt produktu: "+ skapiec.getProducts().get(i).Get_Results().get(j).getCost() +" PLN");
+                    out.println("</div>");
+                    out.println("div class=\"product-shipping\">");
+                    out.println("Koszt dostawy: "+ skapiec.getProducts().get(i).Get_Results().get(j).getMin_Shipping() +" PLN");
+                    out.println("</div>");
+                    out.println("<div class=\"link-product\">");
+                    out.println(" <a href="+skapiec.getProducts().get(i).Get_Results().get(j).getLink()+">Link do produktu w sklepie</a>");
+                    out.println("</div>");
+                    out.println("<div class=\"back-container\">");
+                    out.println("< <a class=\"back-to-homepage\" href=\"index.jsp\">Szukaj innych produktów</a>>");
+                    out.println("</div>");
+                    out.println("</div>");
+                    out.println("location='result.jsp';");
+                    out.println("</script>");
+
                     request.setAttribute("result" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getName());
                     request.setAttribute("cost" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getCost());
                     request.setAttribute("shipping" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getMin_Shipping());
