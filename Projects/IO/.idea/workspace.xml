@@ -7,21 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/IO_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/IO_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/IO.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Servlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/controller/Skapiec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/result.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -390,7 +376,8 @@
       <workItem from="1575135392843" duration="1090000" />
       <workItem from="1575224124054" duration="2310000" />
       <workItem from="1575305392942" duration="10543000" />
-      <workItem from="1575324560447" duration="3994000" />
+      <workItem from="1575324560447" duration="4046000" />
+      <workItem from="1575395864646" duration="2926000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -616,7 +603,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575316745377</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="dynamiczne robienie parametrow w html pacz Servlet">
+      <created>1575328625110</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1575328625110</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,6 +638,7 @@
     <MESSAGE value="hehehe threads, time ok" />
     <MESSAGE value="Rozia" />
     <MESSAGE value="Nati" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nati" />
+    <MESSAGE value="dynamiczne robienie parametrow w html pacz Servlet" />
+    <option name="LAST_COMMIT_MESSAGE" value="dynamiczne robienie parametrow w html pacz Servlet" />
   </component>
 </project>
