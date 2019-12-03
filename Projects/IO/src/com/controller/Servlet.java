@@ -29,7 +29,7 @@ public class Servlet extends HttpServlet {
         //dodajemy do poszczegolnych list podane dane przez użytkownika
 
         //ZMIENIC OZNACZENIA W STRONCE!!!! NP NAME0,NAME1, ...NAME4
-        for(int i = 0;i<5;i++){
+          for(int i = 0;i<5;i++){
             if(!request.getParameter("name"+i).isEmpty()) {
                 try {
                     names.add(request.getParameter("name" + i));
@@ -90,7 +90,7 @@ public class Servlet extends HttpServlet {
             if (skapiec.getProducts().get(i).Get_Results().size()!=0) {
                 for(int j=0;i<skapiec.getProducts().get(i).Get_Results().size();i++) {
                     request.setAttribute("result" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getName());
-                    request.setAttribute("result_cost" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getCost());
+                    request.setAttribute("cost" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getCost());
                     request.setAttribute("shipping" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getMin_Shipping());
                     request.setAttribute("link" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getLink());
                     request.getRequestDispatcher("result.jsp").forward(request, response);
