@@ -11,7 +11,6 @@ body {
   label {
     display: block;
     padding-bottom: 10px;
-    margin: 0 80px;
     border-bottom: 1px solid #b52b65;
   }
   
@@ -36,26 +35,40 @@ body {
     margin-bottom: 5px;
   }
   
-  form {
-    text-align: center;
-  }
-  
-  form > div {
-    border-radius: 8px;
-    padding: 10px;
-    margin: 20px;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
-    width: 300px;
-    background-color: #ffd0f8;
-  }
-  
+  //form {
+  //  text-align: center;
+  //  //display: flex;
+  //  //justify-content: flex-start;
+  //  //flex-direction: row;
+  //  //font-weight: bold;
+  //}
+
   .product-forms {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
     font-weight: bold;
   }
-  
+
+  .product-form,
+  .product-form-1,
+  .product-form-2,
+  .product-form-3,
+  .product-form-4 {
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 20px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+    width: 300px;
+    background-color: #ffd0f8;
+    text-align: center;
+  }
+
+  #submit-btn {
+    margin: 20px 58px;
+  }
+
   //.product-form-1,
   //.product-form-2,
   //.product-form-3,
@@ -99,5 +112,6 @@ body {
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     margin: 20px 0;
+    display: block;
   }
   
