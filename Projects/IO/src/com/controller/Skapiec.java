@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
 
@@ -36,7 +37,7 @@ public class Skapiec{
         Document document= connect.get();
         Elements no_results = document.select("p.content"); //gdy brak wyników
         Elements search_site;//strony z wynikami wyszukiwania
-        System.out.println("hehe");
+
 
         if (no_results.text().equals("Brak produktów dla wyszukiwanej frazy."))
         {
@@ -80,7 +81,7 @@ public class Skapiec{
                 product.Get_Results().sort(Result::compareTo);
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
-            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<8);
+            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<6);
         }
         //posortuj i wybierz
         //select_results(product)
@@ -337,38 +338,62 @@ public class Skapiec{
 
     //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
     // EHHHHHHHHHHHHHHH
-/*
-    public void select_results(Product product){
-        product.Get_Results().sort(Result::compareTo);
+
+    public ArrayList<Double> select_results() {
+
+        //product.Get_Results().sort(Result::compareTo); TODO to musi gdzies byc!
         //product.Set_Results((ArrayList<Result>) product.Get_Results().subList(0,3));
 
-        for (int i=0; i<2; i++) { // dla kazdego zbioru produktow (results) obliczamy zbiorczy koszt wysylki
-            //product.Get_Results().get(i)
-            ArrayList<ArrayList> shops = new ArrayList<ArrayList>(); // w tej liscie trzymamy listy produktow o tych samych shop_id
-            for p in produktyDlaTychResultow {
-                for (shop:shops) {
-                    if p.Get_Results().get(i).getShop_id() == shop.get(0) { // jesli lista dla tego shop_id juz istnieje
-                        shop.add(p);
-                    }
-                    else{
-                        shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
-                        shops.get(shops.size() - 1).add(p);  // i dopisz p do tej listy
-                    }
-                }
-            }
+        ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
+        teams.add(new ArrayList<Result>());
+        teams.add(new ArrayList<Result>());
+        teams.add(new ArrayList<Result>());
 
+        for (Product p : products) {
+            teams.get(0).add(product.Get_Results().get(0));
+            teams.get(1).add(product.Get_Results().get(1));
+            teams.get(2).add(product.Get_Results().get(2));
         }
 
- */
 
         //product.Set_Results(product.Get_Results().subList(0,3).toArray());
 
 
+        ArrayList<ArrayList<Result>> shops = new ArrayList<ArrayList<Result>>(); // w tej liscie trzymamy listy produktow o tych samych shop_id
+        ArrayList<Double> summaryShippings = new ArrayList<Double>();
 
-        //}
-    //}
+        for (ArrayList<Result> team : teams) {
+            for (Result r : team) {
+                if (shops.isEmpty()) {
+                    shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
+                    shops.get(shops.size() - 1).add(r);  // i dopisz p do tej listy
+                } else {
+                    for (ArrayList<Result> shop : shops) {
+                        if (r.getShop_id() == shop.get(0).getShop_id()) { // jesli lista dla tego shop_id juz istnieje
+                            shop.add(r);
+                        } else {
+                            shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
+                            shops.get(shops.size() - 1).add(r);  // i dopisz p do tej listy
+                        }
+                    }
+                }
+            }
 
- //*/
+            Double summaryShipping = 0.0;
+            for (ArrayList<Result> shop : shops) {// i teraz tylko lecimy po tej liscie list i bierzemy maks. koszty dostawy dla kazdego sklepu
+                shop.sort(Result::compareTo);
+                summaryShipping += shop.get(0).getMin_Shipping();
+            }
+            summaryShippings.add(summaryShipping);
+        }
+        return summaryShippings;
+    }
+
+
+
+
+
+
 
 
     public ArrayList<Product> getProducts() { return products;}
