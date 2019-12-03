@@ -14,6 +14,7 @@
   <title>SkąpiecPRO</title>
 
   <link rel="stylesheet" href="styles.scss">
+  <script type="text/javascript" src="functions.js"></script>
 
 </head>
 
@@ -24,125 +25,94 @@
   <!-- dodac ograniczenia na wpisywanie itd -->
 
   <div class="product-forms">
-    <div class="servlet-form-1">
-      <form method="get" name="Servlet" action="Servlet">
-        <div>
-          <label>Nazwa produktu</label> <input type="text" name="name0" size="50"
-            placeholder="Wprowadź nazwę produktu" />
+      <form id="form" method="get" name="Servlet" action="Servlet">
+        <div class="product-form">
+          <div>
+            <label>Nazwa produktu</label> <input type="text" name="name0" size="50"
+                                                 placeholder="Wprowadź nazwę produktu" />
+          </div>
+          <div>
+            <label>Ilość</label> <input type="text" name="count0" size="50" placeholder="Wprowadź ilość" />
+          </div>
+          <div>
+            <label>Cena</label>
+            <div class="form-cena">
+              <h5>Od</h5> <input type="text" name="range10" size="50" id="input-cena" placeholder="Cena minimalna" />
+              <h5>Do</h5> <input type="text" name="range20" size="50" id="input-cena" placeholder="Cena maksymalna" />
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Ilość</label> <input type="text" name="count0" size="50" placeholder="Wprowadź ilość" />
+
+        <div class="product-form-1">
+          <div>
+            <label>Nazwa produktu</label> <input type="text" name="name1" size="50"
+              placeholder="Wprowadź nazwę produktu" />
+          </div>
+          <div>
+            <label>Ilość</label> <input type="text" name="count1" size="50" placeholder="Wprowadź ilość" />
+          </div>
+          <div>
+            <label>Cena</label>
+            <div class="form-cena">
+              <h5>Od</h5> <input type="text" name="range11" size="50" id="input-cena" placeholder="Cena minimalna" />
+              <h5>Do</h5> <input type="text" name="range21" size="50" id="input-cena" placeholder="Cena maksymalna" />
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
+
+        <div class="product-form-2">
+          <div>
+            <label>Nazwa produktu</label> <input type="text" name="name2" size="50"
+              placeholder="Wprowadź nazwę produktu" />
+          </div>
+          <div>
+            <label>Ilość</label> <input type="text" name="count2" size="50" placeholder="Wprowadź ilość" />
+          </div>
+          <div>
+            <label>Cena</label>
+            <div class="form-cena">
+              <h5>Od</h5> <input type="text" name="range12" size="50" id="input-cena" placeholder="Cena minimalna" />
+              <h5>Do</h5> <input type="text" name="range22" size="50" id="input-cena" placeholder="Cena maksymalna" />
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Cena</label>
-          <div class="form-cena">
-            <h5>Od</h5> <input type="text" name="range10" size="50" id="input-cena" placeholder="Cena minimalna" />
-            <h5>Do</h5> <input type="text" name="range20" size="50" id="input-cena" placeholder="Cena maksymalna" />
+
+        <div class="product-form-3">
+          <div>
+            <label>Nazwa produktu</label> <input type="text" name="name3" size="50"
+              placeholder="Wprowadź nazwę produktu" />
+          </div>
+          <div>
+            <label>Ilość</label> <input type="text" name="count3" size="50" placeholder="Wprowadź ilość" />
+          </div>
+          <div>
+            <label>Cena</label>
+            <div class="form-cena">
+              <h5>Od</h5> <input type="text" name="range13" size="50" id="input-cena" placeholder="Cena minimalna" />
+              <h5>Do</h5> <input type="text" name="range23" size="50" id="input-cena" placeholder="Cena maksymalna" />
+            </div>
+          </div>
+        </div>
+
+        <div class="product-form-4">
+          <div>
+            <label>Nazwa produktu</label> <input type="text" name="name4" size="50"
+              placeholder="Wprowadź nazwę produktu" />
+          </div>
+          <div>
+            <label>Ilość</label> <input type="text" name="count4" size="50" placeholder="Wprowadź ilość" />
+          </div>
+          <div>
+            <label>Cena</label>
+            <div class="form-cena">
+              <h5>Od</h5> <input type="text" name="range14" size="50" id="input-cena" placeholder="Cena minimalna" />
+              <h5>Do</h5> <input type="text" name="range24" size="50" id="input-cena" placeholder="Cena maksymalna" />
+            </div>
           </div>
         </div>
         <input type="submit" value="Szukaj" size="50" />
       </form>
     </div>
-
-    <div class="servlet-form-2">
-      <form method="get" name="Servlet" action="Servlet">
-        <div>
-          <label>Nazwa produktu</label> <input type="text" name="name" size="50"
-            placeholder="Wprowadź nazwę produktu" />
-        </div>
-        <div>
-          <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
-        </div>
-        <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
-        </div>
-        <div>
-          <label>Cena</label>
-          <div class="form-cena">
-            <h5>Od</h5> <input type="text" name="range1" size="50" id="input-cena" placeholder="Cena minimalna" />
-            <h5>Do</h5> <input type="text" name="range2" size="50" id="input-cena" placeholder="Cena maksymalna" />
-          </div>
-        </div>
-      </form>
-    </div>
-
-
-    <div class="servlet-form-3">
-      <form method="get" name="Servlet" action="Servlet">
-        <div>
-          <label>Nazwa produktu</label> <input type="text" name="name" size="50"
-            placeholder="Wprowadź nazwę produktu" />
-        </div>
-        <div>
-          <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
-        </div>
-        <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
-        </div>
-        <div>
-          <label>Cena</label>
-          <div class="form-cena">
-            <h5>Od</h5> <input type="text" name="range1" size="50" id="input-cena" placeholder="Cena minimalna" />
-            <h5>Do</h5> <input type="text" name="range2" size="50" id="input-cena" placeholder="Cena maksymalna" />
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div class="servlet-form-4">
-      <form method="get" name="Servlet" action="Servlet">
-        <div>
-          <label>Nazwa produktu</label> <input type="text" name="name" size="50"
-            placeholder="Wprowadź nazwę produktu" />
-        </div>
-        <div>
-          <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
-        </div>
-        <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
-        </div>
-        <div>
-          <label>Cena</label>
-          <div class="form-cena">
-            <h5>Od</h5> <input type="text" name="range1" size="50" id="input-cena" placeholder="Cena minimalna" />
-            <h5>Do</h5> <input type="text" name="range2" size="50" id="input-cena" placeholder="Cena maksymalna" />
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div class="servlet-form-5">
-      <form method="get" name="Servlet" action="Servlet">
-        <div>
-          <label>Nazwa produktu</label> <input type="text" name="name" size="50"
-            placeholder="Wprowadź nazwę produktu" />
-        </div>
-        <div>
-          <label>Ilość</label> <input type="text" name="count" size="50" placeholder="Wprowadź ilość" />
-        </div>
-        <div>
-          <label>Min reputacja sprzedawcy</label> <input type="text" name="min_rate" size="50"
-            placeholder="Wprowadź reputację sprzedawcy" />
-        </div>
-        <div>
-          <label>Cena</label>
-          <div class="form-cena">
-            <h5>Od</h5> <input type="text" name="range1" size="50" id="input-cena" placeholder="Cena minimalna" />
-            <h5>Do</h5> <input type="text" name="range2" size="50" id="input-cena" placeholder="Cena maksymalna" />
-          </div>
-        </div>
-      </form>
-    </div>
-
-
-  </div>
 
 </body>
 

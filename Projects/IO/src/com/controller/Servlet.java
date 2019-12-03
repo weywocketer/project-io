@@ -30,7 +30,7 @@ public class Servlet extends HttpServlet {
 
         //ZMIENIC OZNACZENIA W STRONCE!!!! NP NAME0,NAME1, ...NAME4
         for(int i = 0;i<5;i++){
-            if(request.getParameter("name"+i)!=null ) {
+            if(!request.getParameter("name"+i).isEmpty()) {
                 try {
                     names.add(request.getParameter("name" + i));
                     counts.add(Integer.parseInt(request.getParameter("count" + i)));
@@ -82,7 +82,6 @@ public class Servlet extends HttpServlet {
         String range2= request.getParameter("range2");
 
         Double[] range = new Double[2];
-        range[0] = Double.parseDouble(range1);
         range[1] =  Double.parseDouble(range2);
         Product product = new Product(name,Integer.parseInt(count),range);
          */

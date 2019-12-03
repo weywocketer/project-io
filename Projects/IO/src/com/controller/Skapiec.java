@@ -368,6 +368,8 @@ public class Skapiec{
         //}
     //}
 
+ //*/
+
 
     public ArrayList<Product> getProducts() { return products;}
 
