@@ -45,7 +45,7 @@ public class Servlet extends HttpServlet {
                     e.printStackTrace();
                     out.println("<script type=\"text/javascript\">");
                     out.println("alert('Wprowadź poprawne dane!');");
-                    out.println("location='index.jsp';");
+                    //out.println("location='index.jsp';");
                     out.println("</script>");
 
                 }
@@ -110,24 +110,25 @@ public class Servlet extends HttpServlet {
             if (skapiec.getProducts().get(i).Get_Results().size()!=0) {
                 out.println("<h3>"+names.get(i)+"</h3>");
                 //System.out.println(skapiec.getProducts().get(i).Get_Results().size());
-                for(int j=0;j<skapiec.getProducts().get(i).Get_Results().size();j++) {
+                for(int j=0;j<3;j++) {
                     //out.println("<script type=\"text/javascript\">");
-                    out.println("<div class=\"result-page\">");
-                    out.println("<div class=\"found-product\">");
-                    out.println("<h4>"+skapiec.getProducts().get(i).Get_Results().get(j).getName()+"</h4>");
-                    out.println("</div>");
-                    out.println("<div class=\"product-cost\">");
-                    out.println("Koszt produktu: "+ skapiec.getProducts().get(i).Get_Results().get(j).getCost() +" PLN");
-                    out.println("</div>");
-                    out.println("<div class=\"product-shipping\">");
-                    out.println("Koszt dostawy: "+ skapiec.getProducts().get(i).Get_Results().get(j).getMin_Shipping() +" PLN");
-                    out.println("</div>");
-                    out.println("<div class=\"link-product\">");
-                    out.println(" <a href="+skapiec.getProducts().get(i).Get_Results().get(j).getLink()+">Link do produktu w sklepie</a>");
-                    out.println("</div>");
-                    out.println("</div>");
-                    //out.println("location='result.jsp';");
-                    //out.println("</script>");
+                    try {
+                        out.println("<div class=\"result-page\">");
+                        out.println("<div class=\"found-product\">");
+                        out.println("<h4>" + skapiec.getProducts().get(i).Get_Results().get(j).getName() + "</h4>");
+                        out.println("</div>");
+                        out.println("<div class=\"product-cost\">");
+                        out.println("Koszt produktu: " + skapiec.getProducts().get(i).Get_Results().get(j).getCost() + " PLN");
+                        out.println("</div>");
+                        out.println("<div class=\"product-shipping\">");
+                        out.println("Koszt dostawy: " + skapiec.getProducts().get(i).Get_Results().get(j).getMin_Shipping() + " PLN");
+                        out.println("</div>");
+                        out.println("<div class=\"link-product\">");
+                        out.println(" <a href=" + skapiec.getProducts().get(i).Get_Results().get(j).getLink() + ">Link do produktu w sklepie</a>");
+                        out.println("</div>");
+                        out.println("</div>");
+                        //out.println("location='result.jsp';");
+                        //out.println("</script>");
                     /*
                     request.setAttribute("result" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getName());
                     request.setAttribute("cost" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getCost());
@@ -135,15 +136,15 @@ public class Servlet extends HttpServlet {
                     request.setAttribute("link" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getLink());
 
                      */
-                    //request.getRequestDispatcher("result.jsp").forward(request, response);
-
+                        //request.getRequestDispatcher("result.jsp").forward(request, response);
+                    }catch (Exception e){}
 
                 }
 
             } else {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Brak wyników dla:"+skapiec.getProducts().get(i).Get_Name()+"!Spróbuj zmienić zakres cen!');");
-                out.println("location='index.jsp';");
+                //out.println("location='index.jsp';");
                 out.println("</script>");
             }
         }

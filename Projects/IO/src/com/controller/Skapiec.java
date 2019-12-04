@@ -77,11 +77,12 @@ public class Skapiec{
                 for (Element elem : search_site) { // przelacznie po kolejnych stronach wynikow wyszukiwania
                     connect = Jsoup.connect("https://www.skapiec.pl" + elem.attr("href"));
                 }
-                product.Get_Results().sort(Result::compareTo); //SORTOWNIE!!!
+
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
-            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<6);
+            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<4);
         }
+        product.Get_Results().sort(Result::compareTo); //SORTOWNIE!!!
 
     }
 
