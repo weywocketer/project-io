@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
 
@@ -85,40 +86,48 @@ public class Skapiec{
         product.Get_Results().sort(Result::compareTo); //SORTOWNIE!!!
 
     }
-
+    // funkcja losujaca zestawienia i sortujaca je po najnizszym koszcie sumarycznym
     public ArrayList<ArrayList<Result>> eh(){
-
-
-        //lista z listami list wynikow posortowanych po shop_id kazdego produktu
-        ArrayList<ArrayList<ArrayList<Result>>> shops = new  ArrayList<ArrayList<ArrayList<Result>>>();
-
-        ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
-
-        for(Product p:products){
-            shops.add(new ArrayList<ArrayList<Result>>());
-        }
-
-        for(int i=0;i<shops.size();i++)
-        {
-            for(Result r:products.get(i).Get_Results()){
-                if(shops.get(i).isEmpty()){
-                    shops.get(i).add(new ArrayList<Result>());
-                    shops.get(i).get(0).add(r);
-                }
-                else {
-
-                    for(int j=0; j<shops.get(i).size();j++){
-                        if(shops.get(i).get(j).get(0).getShop_id()==r.getShop_id()){
-                            shops.get(i).get(j).add(r);
-                        }
-                        else{
-                            shops.get(i).add(new ArrayList<Result>());
-                            shops.get(i).get(j+1).add(r);
-                        }
+        Random r = new Random();
+        ArrayList<ArrayList<Result>> top3 = new  ArrayList<ArrayList<Result>>();
+        //losujemy zestawienia
+            for(int i=0;i<products.size()*3;i++){
+                top3.add(new ArrayList<Result>());
+                for(int j=0; j<products.size();j++) {
+                    //products.get(j).Get_Results().size()
+                    if(!products.get(j).Get_Results().isEmpty()) {
+                        top3.get(i).add(products.get(j).Get_Results().get(r.nextInt(products.get(j).Get_Results().size())));
+                        //wstawic opcje zeby zminilo koszt wysylki gdy znajdujemy produkty w jednym sklepie
                     }
                 }
             }
+        System.out.println(top3.size());
+        ListComparator<Result> w  = new ListComparator<Result>();
+        //posortować top3 po sumie kosztow list XDDDD
+           top3.sort(new ListComparator<Result>());
+        for(int i = top3.size()-1;i>2;i--){
+            top3.remove(i);
         }
+        for(ArrayList<Result> re: top3){
+                for(Result q:re){
+                    System.out.println(q.getName()+" "+q.getSum());
+                }
+                System.out.println("koszt sumaryczy zestawienia: "+ w.count_sum(re));
+                System.out.println("koniec zestawienia");
+            }
+
+
+            return top3;
+        }
+        /*
+        public Double count_sum_ofTeam(ArrayList<Result> results){
+        Double sum = 0.0;
+            for(Result r:results){
+                sum+=r.getSum();
+            }
+            return sum;
+        }
+        */
         /*
         for(ArrayList<ArrayList<Result>> r:shops){
             for(int i=0;i<r.size();i++){
@@ -159,9 +168,6 @@ public class Skapiec{
         }
 
              */
-
-        return null;
-    }
 
     //funkcja szukająca najmniejszej dostawy
     //dziala
@@ -413,6 +419,7 @@ public class Skapiec{
 
    //funkcja sumujaca koszty wynikow  dla zestawien
     //???????? XDDD
+    /*
     public ArrayList<Double> sum_costs(){
         ArrayList<Double> sum = new ArrayList<Double>();
         ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
@@ -456,6 +463,7 @@ public class Skapiec{
         }
         return sum;
     }
+     */
 
     //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
     // EHHHHHHHHHHHHHHH
@@ -578,8 +586,9 @@ public class Skapiec{
         long timeElapsed = finish - start; //czas trwania programu
 
         System.out.println("Wyszukanu w ciągu:"+timeElapsed/1000+" s");
-        System.out.println(controller.select_results().get(0));
-
+        //System.out.println(controller.select_results().get(0));
+        controller.eh();
+        //controller.eh();
 ///////////////////////////////////////////////////
 
         //zliczamy sume kosztow dla danego zestawienia

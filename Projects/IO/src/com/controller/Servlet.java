@@ -106,6 +106,11 @@ public class Servlet extends HttpServlet {
         out.println("<h1>Wyniki wyszukiwania</h1>");
         /// divy kolo siebie w jednym produkcie!!
         //sumy zestawien!!!
+        ListComparator<Result> r = new ListComparator<>();
+        ArrayList<ArrayList<Result>> top3 = new ArrayList<ArrayList<Result>>();
+        top3 = skapiec.eh();
+        System.out.println(skapiec.getProducts().get(0).Get_Results().size());
+
         for (int i = 0; i <skapiec.getProducts().size();i++) {
             if (skapiec.getProducts().get(i).Get_Results().size()!=0) {
                 out.println("<h3>"+names.get(i)+"</h3>");
@@ -115,16 +120,16 @@ public class Servlet extends HttpServlet {
                     try {
                         out.println("<div class=\"result-page\">");
                         out.println("<div class=\"found-product\">");
-                        out.println("<h4>" + skapiec.getProducts().get(i).Get_Results().get(j).getName() + "</h4>");
+                        out.println("<h4>" + top3.get(j).get(i).getName() + "</h4>");
                         out.println("</div>");
                         out.println("<div class=\"product-cost\">");
-                        out.println("Koszt produktu: " + skapiec.getProducts().get(i).Get_Results().get(j).getCost() + " PLN");
+                        out.println("Koszt produktu: " + top3.get(j).get(i).getCost() + " PLN");
                         out.println("</div>");
                         out.println("<div class=\"product-shipping\">");
-                        out.println("Koszt dostawy: " + skapiec.getProducts().get(i).Get_Results().get(j).getMin_Shipping() + " PLN");
+                        out.println("Koszt dostawy: " + top3.get(j).get(i).getMin_Shipping()  + " PLN");
                         out.println("</div>");
                         out.println("<div class=\"link-product\">");
-                        out.println(" <a href=" + skapiec.getProducts().get(i).Get_Results().get(j).getLink() + ">Link do produktu w sklepie</a>");
+                        out.println(" <a href=" + top3.get(j).get(i).getLink()  + ">Link do produktu w sklepie</a>");
                         out.println("</div>");
                         out.println("</div>");
                         //out.println("location='result.jsp';");
@@ -137,7 +142,9 @@ public class Servlet extends HttpServlet {
 
                      */
                         //request.getRequestDispatcher("result.jsp").forward(request, response);
-                    }catch (Exception e){}
+                    }catch (Exception e){
+                        out.println("</div>");
+                        out.println("</div>");}
 
                 }
 
@@ -148,18 +155,24 @@ public class Servlet extends HttpServlet {
                 //out.println("location='index.jsp';");
                 out.println("</script>");
                  */
+                out.println("<div class=\"result-page\">");
+                out.println("<div class=\"found-product\">");
                 out.println("<h3>Brak wyników dla: "+skapiec.getProducts().get(i).Get_Name()+"</h3>");
                 out.println("<h3>Spróbuj zmienić zakres cen!</h3>");
+                out.println("</div>");
+                out.println("</div>");
+
             }
         }
-        //TODO: dodac sume kosztow przesylek!!!!!
+
         out.println("<h3>Suma:</h3>");
         for(int m = 1; m<4; m++) {
             try {
-                out.println("<h3> Zestaw " + m + ": " + skapiec.sum_costs().get(m-1)+ "</h3>");
+                out.println("<h3> Zestaw " + m + ": " +r.count_sum(top3.get(m-1))+ "</h3>");
             }
             catch (Exception e){
-                out.println("<h3> Zestaw " + m + ": " +"EH" + "</h3>");
+                e.printStackTrace(); //wyszlo poza zakres top3
+                //out.println("<h3> Zestaw " + m + ": " +"EH" + "</h3>");
             }
 
         }
