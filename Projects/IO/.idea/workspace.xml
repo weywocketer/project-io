@@ -8,8 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Servlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/controller/Skapiec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -383,7 +388,9 @@
       <workItem from="1575395864646" duration="7240000" />
       <workItem from="1575409995016" duration="1484000" />
       <workItem from="1575411856918" duration="8731000" />
-      <workItem from="1575455250250" duration="1697000" />
+      <workItem from="1575455250250" duration="1865000" />
+      <workItem from="1575458265207" duration="799000" />
+      <workItem from="1575459920194" duration="346000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -644,7 +651,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575420580460</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="buahaha">
+      <created>1575457109205</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1575457109205</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

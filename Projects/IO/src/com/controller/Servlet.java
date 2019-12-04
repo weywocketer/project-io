@@ -142,10 +142,14 @@ public class Servlet extends HttpServlet {
                 }
 
             } else {
+                /*
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Brak wyników dla:"+skapiec.getProducts().get(i).Get_Name()+"!Spróbuj zmienić zakres cen!');");
                 //out.println("location='index.jsp';");
                 out.println("</script>");
+                 */
+                out.println("<h3>Brak wyników dla: "+skapiec.getProducts().get(i).Get_Name()+"</h3>");
+                out.println("<h3>Spróbuj zmienić zakres cen!</h3>");
             }
         }
         //TODO: dodac sume kosztow przesylek!!!!!
