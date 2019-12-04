@@ -86,6 +86,83 @@ public class Skapiec{
 
     }
 
+    public ArrayList<ArrayList<Result>> eh(){
+
+
+        //lista z listami list wynikow posortowanych po shop_id kazdego produktu
+        ArrayList<ArrayList<ArrayList<Result>>> shops = new  ArrayList<ArrayList<ArrayList<Result>>>();
+
+        ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
+
+        for(Product p:products){
+            shops.add(new ArrayList<ArrayList<Result>>());
+        }
+
+        for(int i=0;i<shops.size();i++)
+        {
+            for(Result r:products.get(i).Get_Results()){
+                if(shops.get(i).isEmpty()){
+                    shops.get(i).add(new ArrayList<Result>());
+                    shops.get(i).get(0).add(r);
+                }
+                else {
+
+                    for(int j=0; j<shops.get(i).size();j++){
+                        if(shops.get(i).get(j).get(0).getShop_id()==r.getShop_id()){
+                            shops.get(i).get(j).add(r);
+                        }
+                        else{
+                            shops.get(i).add(new ArrayList<Result>());
+                            shops.get(i).get(j+1).add(r);
+                        }
+                    }
+                }
+            }
+        }
+        /*
+        for(ArrayList<ArrayList<Result>> r:shops){
+            for(int i=0;i<r.size();i++){
+                teams.add(new ArrayList<Result>());
+                for(int j=0;j<r.get(i).size();j++){
+                    if(r.get(i).get(0))
+                    teams.get(i).add(r.get(i).get(0));
+
+                }
+            }
+        }
+
+         */
+            /*
+        for (Product p:products){
+            for(Result r:product.Get_Results()){
+                if(shops.isEmpty()){
+                    shops.get(0).add(r);
+                }
+                else{
+                    for(int i=0; i<shops.size();i++){
+                        if(shops.get(i).get(0).getShop_id()==r.getShop_id()){
+                            shops.get(i).add(r);
+                        }
+                        else{
+                            shops.add(new ArrayList<Result>());
+                            shops.get(i+1).add(r);
+                        }
+                    }
+                }
+            }
+        }
+
+             */
+            /*
+        for(ArrayList<Result> r:shops){
+            r.sort(Result::compareTo);
+        }
+
+             */
+
+        return null;
+    }
+
     //funkcja szukająca najmniejszej dostawy
     //dziala
     public Double[] searchShipping(String url) throws IOException{
