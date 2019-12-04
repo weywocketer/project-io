@@ -103,9 +103,12 @@ public class Servlet extends HttpServlet {
         out.println("<link rel=\"stylesheet\" href=\"styles.scss\">");
         out.println("</head>");
         out.println("<body>");
-
+        out.println("<h1>Wyniki wyszukiwania</h1>");
+        /// divy kolo siebie w jednym produkcie!!
+        //sumy zestawien!!!
         for (int i = 0; i <skapiec.getProducts().size();i++) {
             if (skapiec.getProducts().get(i).Get_Results().size()!=0) {
+                out.println("<h3>"+names.get(i)+"</h3>");
                 //System.out.println(skapiec.getProducts().get(i).Get_Results().size());
                 for(int j=0;j<skapiec.getProducts().get(i).Get_Results().size();j++) {
                     //out.println("<script type=\"text/javascript\">");
@@ -121,9 +124,6 @@ public class Servlet extends HttpServlet {
                     out.println("</div>");
                     out.println("<div class=\"link-product\">");
                     out.println(" <a href="+skapiec.getProducts().get(i).Get_Results().get(j).getLink()+">Link do produktu w sklepie</a>");
-                    out.println("</div>");
-                    out.println("<div class=\"back-container\">");
-                    out.println("<a class=\"back-to-homepage\" href=\"index.jsp\">Szukaj innych produktów</a>");
                     out.println("</div>");
                     out.println("</div>");
                     //out.println("location='result.jsp';");
@@ -147,10 +147,24 @@ public class Servlet extends HttpServlet {
                 out.println("</script>");
             }
         }
+        //TODO: dodac sume kosztow przesylek!!!!!
+        out.println("<h3>Suma:</h3>");
+        for(int m = 1; m<4; m++) {
+            try {
+                out.println("<h3> Zestaw " + m + ": " + skapiec.sum_costs().get(m-1)+ "</h3>");
+            }
+            catch (Exception e){
+                out.println("<h3> Zestaw " + m + ": " +"EH" + "</h3>");
+            }
+
+        }
+
+        out.println("<div class=\"back-container\">");
+        out.println("<a class=\"back-to-homepage\" href=\"index.jsp\">Szukaj innych produktów</a>");
+        out.println("</div>");
         out.println("</body>");
         out.println("</html>");
         //request.getRequestDispatcher("result.jsp").forward(request, response);
-
 
     }
 

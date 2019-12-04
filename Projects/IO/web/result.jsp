@@ -19,7 +19,6 @@
 </head>
 
 <body>
-<%-- jakis wielki napis WYNIKI
   <div class="result-page">
     <div class="found-product">
       <h4>${result00}</h4>
@@ -37,7 +36,7 @@
       <a class="back-to-homepage" href="index.jsp">Szukaj innych produktów</a>
     </div>
 
-  </div> --%>
+  </div>
 
 
 </body>

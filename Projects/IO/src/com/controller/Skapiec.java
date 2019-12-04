@@ -8,7 +8,6 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 //jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
 
@@ -78,13 +77,11 @@ public class Skapiec{
                 for (Element elem : search_site) { // przelacznie po kolejnych stronach wynikow wyszukiwania
                     connect = Jsoup.connect("https://www.skapiec.pl" + elem.attr("href"));
                 }
-                product.Get_Results().sort(Result::compareTo);
+                product.Get_Results().sort(Result::compareTo); //SORTOWNIE!!!
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
             }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<6);
         }
-        //posortuj i wybierz
-        //select_results(product)
 
     }
 
@@ -336,9 +333,54 @@ public class Skapiec{
 
     }
 
+   //funkcja sumujaca koszty wynikow  dla zestawien
+    //???????? XDDD
+    public ArrayList<Double> sum_costs(){
+        ArrayList<Double> sum = new ArrayList<Double>();
+        ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
+
+        teams.add(new ArrayList<Result>());
+        teams.add(new ArrayList<Result>());
+        teams.add(new ArrayList<Result>());
+
+        for (Product p : products) {
+            try {
+                teams.get(0).add(p.Get_Results().get(0));
+
+            }
+            catch (Exception e) {
+
+            }
+            try {
+                teams.get(1).add(p.Get_Results().get(1));
+
+            }
+            catch (Exception e) {
+
+            }
+            try {
+                teams.get(2).add(p.Get_Results().get(2));
+
+            }
+            catch (Exception e) {
+
+            }
+        }
+
+        Double current_sum = 0.0;
+        for(ArrayList<Result> results:teams){
+            for(Result r:results){
+                current_sum+=r.getCost();
+                //System.out.println(r.getName()+current_sum);
+            }
+            sum.add(current_sum);
+            current_sum=0.0;
+        }
+        return sum;
+    }
+
     //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
     // EHHHHHHHHHHHHHHH
-
     public ArrayList<Double> select_results() {
 
         //product.Get_Results().sort(Result::compareTo); TODO to musi gdzies byc!
@@ -352,16 +394,15 @@ public class Skapiec{
 
         for (Product p : products) {
             try {
-                teams.get(0).add(product.Get_Results().get(0));
-                teams.get(1).add(product.Get_Results().get(1));
-                teams.get(2).add(product.Get_Results().get(2));
+                teams.get(0).add(p.Get_Results().get(0));
+                teams.get(1).add(p.Get_Results().get(1));
+                teams.get(2).add(p.Get_Results().get(2));
 
             }
             catch (Exception e) {
 
             }
         }
-
 
         //product.Set_Results(product.Get_Results().subList(0,3).toArray());
 
@@ -396,19 +437,14 @@ public class Skapiec{
 
             Double summaryShipping = 0.0;
             for (ArrayList<Result> shop : shops) {// i teraz bierzemy maks. koszty dostawy dla kazdego sklepu
-                shop.sort(Result::compareTo);
+               shop.sort(Result::compareTo);
+                //Collections.sort(shop,Collections.reverseOrder(Result::compareTo));
                 summaryShipping += shop.get(0).getMin_Shipping();
             }
             summaryShippings.add(summaryShipping);
 
         return summaryShippings;
     }
-
-
-
-
-
-
 
 
     public ArrayList<Product> getProducts() { return products;}

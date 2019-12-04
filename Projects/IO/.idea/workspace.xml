@@ -6,25 +6,20 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="dynamiczne robienie parametrow w html pacz Servlet">
+    <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Servlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/controller/Skapiec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/styles.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -397,7 +392,7 @@
       <workItem from="1575324560447" duration="4046000" />
       <workItem from="1575395864646" duration="7240000" />
       <workItem from="1575409995016" duration="1484000" />
-      <workItem from="1575411856918" duration="3424000" />
+      <workItem from="1575411856918" duration="8661000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -644,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575403977077</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="buahaha">
+      <created>1575415424371</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1575415424371</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -673,6 +675,7 @@
     <MESSAGE value="Rozia" />
     <MESSAGE value="Nati" />
     <MESSAGE value="dynamiczne robienie parametrow w html pacz Servlet" />
-    <option name="LAST_COMMIT_MESSAGE" value="dynamiczne robienie parametrow w html pacz Servlet" />
+    <MESSAGE value="buahaha" />
+    <option name="LAST_COMMIT_MESSAGE" value="buahaha" />
   </component>
 </project>
