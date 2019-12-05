@@ -534,7 +534,7 @@ public class Skapiec{
     }
      */
 
-    //zwraca sumaryczny koszt dostawy produktow z listy (uwzgledniajac czy sa z tego samego sklepu)
+    //zwraca sumaryczny koszt dostawy produktow z listy (uwzgledniajac czy sa z tego samego sklepu) (funkcja przeniesiona do ListComparator, ale zostawiam na razie tez tutaj)
     public Double count_shipping(ArrayList<Result> listOfResults) {
 
         ArrayList<ArrayList<Result>> shops = new ArrayList<ArrayList<Result>>(); // w tej liscie trzymamy listy produktow o tych samych shop_id
