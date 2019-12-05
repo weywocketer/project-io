@@ -535,8 +535,8 @@ public class Skapiec{
      */
 
     //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
-    public ArrayList<Double> select_results() {
-
+    public Double select_results(ArrayList<Result> listOfResults) {
+        /*
         ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
 
         teams.add(new ArrayList<Result>());
@@ -554,44 +554,41 @@ public class Skapiec{
 
             }
         }
-
+        */
         ArrayList<ArrayList<Result>> shops = new ArrayList<ArrayList<Result>>(); // w tej liscie trzymamy listy produktow o tych samych shop_id
-        ArrayList<Double> summaryShippings = new ArrayList<Double>();
 
-        for (ArrayList<Result> team : teams) {
-            for (Result r : team) {
-                if (shops.isEmpty()) {
+        //for (ArrayList<Result> team : teams) {
+        for (Result r : listOfResults) {
+            if (shops.isEmpty()) {
+                shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
+                shops.get(0).add(r);  // i dopisz p do tej listy
+            } else {
+                int i = 0;
+                Boolean addNewList = true;
+                while (i < shops.size()) {
+                    if (r.getShop_id() == shops.get(i).get(0).getShop_id()) { // jesli lista dla tego shop_id juz istnieje
+                        shops.get(i).add(r);
+                        addNewList = false;
+                        break;
+                    }
+                    i += 1;
+                }
+                if (addNewList) {
                     shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
-                    shops.get(0).add(r);  // i dopisz p do tej listy
-                } else {
-                    //for (ArrayList<Result> shop : shops) {
-                    int i = 0;
-                    Boolean addNewList = true;
-                    while (i < shops.size()){
-                        if (r.getShop_id() == shops.get(i).get(0).getShop_id()) { // jesli lista dla tego shop_id juz istnieje
-                            shops.get(i).add(r);
-                            addNewList = false;
-                            break;
-                        }
-                        i += 1;
-                    }
-                    if (addNewList) {
-                        shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
-                        shops.get(shops.size() - 1).add(r);  // i dopisz p do tej listy
-                    }
+                    shops.get(shops.size() - 1).add(r);  // i dopisz p do tej listy
                 }
             }
         }
+        //}
 
-            Double summaryShipping = 0.0;
-            for (ArrayList<Result> shop : shops) {// i teraz bierzemy maks. koszty dostawy dla kazdego sklepu
-               shop.sort(Result::compareTo);
-                //Collections.sort(shop,Collections.reverseOrder(Result::compareTo));
-                summaryShipping += shop.get(0).getMin_Shipping();
-            }
-            summaryShippings.add(summaryShipping);
+        Double summaryShipping = 0.0;
+        for (ArrayList<Result> shop : shops) {// i teraz bierzemy maks. koszty dostawy dla kazdego sklepu
+            shop.sort(Result::compareTo);
+            //Collections.sort(shop,Collections.reverseOrder(Result::compareTo));
+            summaryShipping += shop.get(0).getMin_Shipping();
+        }
 
-        return summaryShippings;
+        return summaryShipping;
     }
 
 //funkcja szukajaca wynikow bez zakresu ceny
@@ -850,7 +847,8 @@ public class Skapiec{
 
         System.out.println("Wyszukanu w ciągu:"+timeElapsed/1000+" s");
         //System.out.println(controller.select_results().get(0));
-        controller.choose_results();
+        //System.out.println(controller.select_results().get(1));
+        System.out.println(controller.choose_results().get(0));
 
     }
 
