@@ -86,28 +86,55 @@ public class Skapiec{
         product.Get_Results().sort(Result::compareTo); //SORTOWNIE!!!
 
     }
+
+
     // funkcja losujaca zestawienia i sortujaca je po najnizszym koszcie sumarycznym
-    public ArrayList<ArrayList<Result>> eh(){
+    public ArrayList<ArrayList<Result>> choose_results(){
         Random r = new Random();
-        ArrayList<ArrayList<Result>> top3 = new  ArrayList<ArrayList<Result>>();
+        ArrayList<ArrayList<Result>> top = new  ArrayList<ArrayList<Result>>();
         //losujemy zestawienia
             for(int i=0;i<products.size()*3;i++){
-                top3.add(new ArrayList<Result>());
+                top.add(new ArrayList<Result>());
                 for(int j=0; j<products.size();j++) {
                     //products.get(j).Get_Results().size()
                     if(!products.get(j).Get_Results().isEmpty()) {
-                        top3.get(i).add(products.get(j).Get_Results().get(r.nextInt(products.get(j).Get_Results().size())));
+                        top.get(i).add(products.get(j).Get_Results().get(r.nextInt(products.get(j).Get_Results().size())));
                         //wstawic opcje zeby zminilo koszt wysylki gdy znajdujemy produkty w jednym sklepie
                     }
                 }
             }
-        System.out.println(top3.size());
+            /*
+        System.out.println(top.size());
         ListComparator<Result> w  = new ListComparator<Result>();
-        //posortować top3 po sumie kosztow list XDDDD
-           top3.sort(new ListComparator<Result>());
+        for(ArrayList<Result> re: top){
+            for(Result q:re){
+                System.out.println(q.getName()+" "+q.getSum());
+            }
+            System.out.println("koszt sumaryczy zestawienia: "+ w.count_sum(re));
+            System.out.println("koniec zestawienia");
+        }
+             */
+
+
+           //usuwamy duplikaty
+        ArrayList<ArrayList<Result>> top3 = new ArrayList<ArrayList<Result>>();
+        for(ArrayList<Result> arrayList: top){
+            if(!top3.contains(arrayList)){
+                top3.add(arrayList);
+            }
+        }
+        //TODO: FUNKCJA KTORA UWZGLEDNI NAM KOSZTY DOSTAWY GDY PRODUKTY W TYM SAMYM SKLEPIE
+        //////FUNKCJA KTORA
+
+        //posortować top3 po sumie kosztow list
+        top3.sort(new ListComparator<Result>());
+
+           //wybiera trzy najlepsze
         for(int i = top3.size()-1;i>2;i--){
             top3.remove(i);
         }
+        /*
+        System.out.println(top3.size());
         for(ArrayList<Result> re: top3){
                 for(Result q:re){
                     System.out.println(q.getName()+" "+q.getSum());
@@ -116,9 +143,11 @@ public class Skapiec{
                 System.out.println("koniec zestawienia");
             }
 
+         */
 
             return top3;
         }
+
         /*
         public Double count_sum_ofTeam(ArrayList<Result> results){
         Double sum = 0.0;
@@ -469,9 +498,6 @@ public class Skapiec{
     // EHHHHHHHHHHHHHHH
     public ArrayList<Double> select_results() {
 
-        //product.Get_Results().sort(Result::compareTo); TODO to musi gdzies byc!
-        //product.Set_Results((ArrayList<Result>) product.Get_Results().subList(0,3));
-
         ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
 
         teams.add(new ArrayList<Result>());
@@ -489,9 +515,6 @@ public class Skapiec{
 
             }
         }
-
-        //product.Set_Results(product.Get_Results().subList(0,3).toArray());
-
 
         ArrayList<ArrayList<Result>> shops = new ArrayList<ArrayList<Result>>(); // w tej liscie trzymamy listy produktow o tych samych shop_id
         ArrayList<Double> summaryShippings = new ArrayList<Double>();
@@ -587,7 +610,7 @@ public class Skapiec{
 
         System.out.println("Wyszukanu w ciągu:"+timeElapsed/1000+" s");
         //System.out.println(controller.select_results().get(0));
-        controller.eh();
+        controller.choose_results();
         //controller.eh();
 ///////////////////////////////////////////////////
 

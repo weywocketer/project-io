@@ -108,7 +108,7 @@ public class Servlet extends HttpServlet {
         //sumy zestawien!!!
         ListComparator<Result> r = new ListComparator<>();
         ArrayList<ArrayList<Result>> top3 = new ArrayList<ArrayList<Result>>();
-        top3 = skapiec.eh();
+        top3 = skapiec.choose_results();
         System.out.println(skapiec.getProducts().get(0).Get_Results().size());
 
         for (int i = 0; i <skapiec.getProducts().size();i++) {
