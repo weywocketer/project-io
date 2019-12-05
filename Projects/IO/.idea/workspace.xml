@@ -8,15 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="58c2f23b-1bd6-49bb-a917-59864f906af1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Skapiec.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/controller/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/controller/Servlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Servlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Servlet$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/IO_war_exploded/WEB-INF/classes/com/controller/Skapiec.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IO/com/controller/Servlet$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/controller/Skapiec.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/controller/Skapiec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -387,7 +385,8 @@
       <workItem from="1575459920194" duration="385000" />
       <workItem from="1575465857298" duration="3882000" />
       <workItem from="1575485685467" duration="12447000" />
-      <workItem from="1575558687768" duration="7295000" />
+      <workItem from="1575558687768" duration="7323000" />
+      <workItem from="1575568365302" duration="2225000" />
     </task>
     <task id="LOCAL-00001" summary="eh2">
       <created>1574008045125</created>
@@ -683,7 +682,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575561703858</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="buahaha">
+      <created>1575566956047</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1575566956047</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

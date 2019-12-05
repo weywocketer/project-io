@@ -86,17 +86,7 @@ public class Servlet extends HttpServlet {
         for (Thread t:threads){
             t.run();
         }
-        /*
-        String name = request.getParameter("name");
-        String count = request.getParameter("count");
-        String range1 = request.getParameter("range1");
-        String range2= request.getParameter("range2");
 
-        Double[] range = new Double[2];
-        range[1] =  Double.parseDouble(range2);
-        Product product = new Product(name,Integer.parseInt(count),range);
-         */
-        // DODAĆ ŻEBY WYŚWIETLAŁO 3 I DLA KAŻDEGO PRODUKTU!!!
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset=\"UTF-8\">");
@@ -136,7 +126,7 @@ public class Servlet extends HttpServlet {
         }
 
         for(Product product:skapiec.getProducts()){
-            if(product.Get_without_range()==true){
+            if(product.Get_without_range()){
                 out.println("<div class=\"result-page\">");
                 out.println("<div class=\"found-product\">");
                 out.println("<h3>Brak wyników dla: "+product.Get_Name()+" w danym zakresie cen!</h3>");
@@ -152,73 +142,6 @@ public class Servlet extends HttpServlet {
                 out.println("</div>");
             }
         }
-        /*
-        for (int i = 0; i <skapiec.getProducts().size();i++) {
-            if (skapiec.getProducts().get(i).Get_Results().size()!=0) {
-                out.println("<h3>"+names.get(i)+"</h3>");
-                //System.out.println(skapiec.getProducts().get(i).Get_Results().size());
-                for(int j=0;j<3;j++) {
-                    //out.println("<script type=\"text/javascript\">");
-                    try {
-                        out.println("<div class=\"result-page\">");
-                        out.println("<div class=\"found-product\">");
-                        out.println("<h4>" + top3.get(j).get(i).getName() + "</h4>");
-                        out.println("</div>");
-                        out.println("<div class=\"product-cost\">");
-                        out.println("Koszt produktu: " + top3.get(j).get(i).getCost() + " PLN");
-                        out.println("</div>");
-                        out.println("<div class=\"product-shipping\">");
-                        out.println("Koszt dostawy: " + top3.get(j).get(i).getMin_Shipping()  + " PLN");
-                        out.println("</div>");
-                        out.println("<div class=\"link-product\">");
-                        out.println(" <a href=" + top3.get(j).get(i).getLink()  + ">Link do produktu w sklepie</a>");
-                        out.println("</div>");
-                        out.println("</div>");
-                        //out.println("location='result.jsp';");
-                        //out.println("</script>");
-                    /*
-                    request.setAttribute("result" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getName());
-                    request.setAttribute("cost" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getCost());
-                    request.setAttribute("shipping" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getMin_Shipping());
-                    request.setAttribute("link" + i+""+j, skapiec.getProducts().get(i).Get_Results().get(j).getLink());
-
-
-                        //request.getRequestDispatcher("result.jsp").forward(request, response);
-                    }catch (Exception e){
-                        out.println("</div>");
-                        out.println("</div>");}
-
-                }
-
-            } else {
-                /*
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('Brak wyników dla:"+skapiec.getProducts().get(i).Get_Name()+"!Spróbuj zmienić zakres cen!');");
-                //out.println("location='index.jsp';");
-                out.println("</script>");
-
-                out.println("<div class=\"result-page\">");
-                out.println("<div class=\"found-product\">");
-                out.println("<h3>Brak wyników dla: "+skapiec.getProducts().get(i).Get_Name()+"</h3>");
-                out.println("<h3>Spróbuj zmienić zakres cen!</h3>");
-                out.println("</div>");
-                out.println("</div>");
-
-            }
-        }
-
-        out.println("<h3>Suma:</h3>");
-        for(int m = 1; m<4; m++) {
-            try {
-                out.println("<h3> Zestaw " + m + ": " +r.count_sum(top3.get(m-1))+ "</h3>");
-            }
-            catch (Exception e){
-                e.printStackTrace(); //wyszlo poza zakres top3
-                //out.println("<h3> Zestaw " + m + ": " +"EH" + "</h3>");
-            }
-
-        }
-        */
 
         out.println("<div class=\"back-container\">");
         out.println("<a class=\"back-to-homepage\" href=\"index.jsp\">Szukaj innych produktów</a>");

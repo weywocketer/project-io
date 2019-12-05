@@ -10,27 +10,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-//jezeli brak wyników to wyszukuje bez zakresu cenowego jesli dalej nic -> alert (jak bedzie stronka)
-
-// posortować według ceny
-// wziac mac przesylke!
-
-/// ZMIENIAMY ZAMYSŁ XDDDD -> w klasie Skapiec
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// JEŻELI ZNALEZIONO TYLKO JEDEN PRODUKT to opcja - olewamy XD
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// implements Runnable
 public class Skapiec{
 
     //Skąpiec.pl
-    //moze by inaczej to zrobic
     private ArrayList<Product> products = new ArrayList<Product>(); //lista z produktami
     private ArrayList<Double> sum_cost = new ArrayList<Double>(); //lista z wynikami
     Element boxe;
     Product product;
 
+// wyszkuje wyniki
     public  void Search(Product product) throws IOException {
 
         Connection connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/" + product.Get_Name());
@@ -79,11 +67,13 @@ public class Skapiec{
                     connect = Jsoup.connect("https://www.skapiec.pl" + elem.attr("href"));
                 }
 
+                //mierzy czas, aby utrzymac limit czasowy
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
             }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<3);
         }
-        product.Get_Results().sort(Result::compareTo); //SORTOWNIE!!!
+        product.Get_Results().sort(Result::compareTo); //sortowanie wynikow po koszcie, w sumie na tym poziomie nie jest to konieczne
+        //jezeli brak wynikow to szukaj bez zakresu cenowego
         if(product.Get_Results().isEmpty()){
             product.Set_Without_range(true);
             connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/" + product.Get_Name());
@@ -412,8 +402,6 @@ public class Skapiec{
             document = connect.get();//łączenie
             name = document.select("h1");
             products = document.select("div.offers-list:nth-child(2) > ul:nth-child(1) > li:nth-child(1)"); //wybieramy prostokaty w ktorych sa dane
-            //Thread t2 = new Thread(new MultiTask(document,product));
-            //t2.run();
 
             for(Element p: products)
             {
@@ -499,7 +487,7 @@ public class Skapiec{
     }
 
    //funkcja sumujaca koszty wynikow  dla zestawien
-    //???????? XDDD
+    //niepotrzebna
     /*
     public ArrayList<Double> sum_costs(){
         ArrayList<Double> sum = new ArrayList<Double>();
@@ -547,7 +535,6 @@ public class Skapiec{
      */
 
     //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
-    // EHHHHHHHHHHHHHHH
     public ArrayList<Double> select_results() {
 
         ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
@@ -607,7 +594,7 @@ public class Skapiec{
         return summaryShippings;
     }
 
-//funkcja szukajaca wynikow bez zakreus ceny
+//funkcja szukajaca wynikow bez zakresu ceny
     public void Research_without_range(Element box1, Product product) throws IOException {
         String result_name ="";
         String result_link="";
@@ -813,6 +800,7 @@ public class Skapiec{
     public ArrayList<Double> getSum_cost() { return sum_cost;}
 
     public static void main (String[]args) throws IOException {
+        //wszystko co niżej do testowania czy wgl program dziala
         Double[] range = new Double[2];
         range[0] = 30.0;
         range[1] = 40.0;
@@ -863,24 +851,7 @@ public class Skapiec{
         System.out.println("Wyszukanu w ciągu:"+timeElapsed/1000+" s");
         //System.out.println(controller.select_results().get(0));
         controller.choose_results();
-        //controller.eh();
-///////////////////////////////////////////////////
-
-        //zliczamy sume kosztow dla danego zestawienia
-        //controller.count_sum();
 
     }
 
-    /*
-    @Override
-    public void run() {
-        try{
-           Research(this.boxe, this.product);
-        }catch(Exception e){
-            System.out.println();
-            e.printStackTrace();
-        }
-
-    }
-     */
 }
