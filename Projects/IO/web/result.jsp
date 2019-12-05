@@ -35,7 +35,6 @@
     <div class="back-container">
       <a class="back-to-homepage" href="index.jsp">Szukaj innych produktów</a>
     </div>
-
   </div>
 
 

@@ -30,7 +30,7 @@ public class Servlet extends HttpServlet {
         //dodajemy do poszczegolnych list podane dane przez użytkownika
 
         //ZMIENIC OZNACZENIA W STRONCE!!!! NP NAME0,NAME1, ...NAME4
-          for(int i = 0;i<5;i++){
+        for(int i = 0;i<5;i++){
             if(!request.getParameter("name"+i).isEmpty()) {
                 try {
                     names.add(request.getParameter("name" + i));
@@ -104,6 +104,7 @@ public class Servlet extends HttpServlet {
 
         for(int i=0;i<top3.size();i++){
             out.println("<h3>Zestawienie: "+(i+1)+"</h3>");
+            out.println("<div class=\"products-result\">");
             for(Result result: top3.get(i)){
                 out.println("<div class=\"result-page\">");
                 out.println("<div class=\"found-product\">");
@@ -121,8 +122,8 @@ public class Servlet extends HttpServlet {
                 out.println("</div>");
                 out.println("</div>");
                 out.println("</div>");
-
             }
+            out.println("</div>");
         }
 
         for(Product product:skapiec.getProducts()){
