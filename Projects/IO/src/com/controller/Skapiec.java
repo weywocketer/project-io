@@ -534,30 +534,11 @@ public class Skapiec{
     }
      */
 
-    //poustawia wyniki biorąc pod uwagę przedmioty z tego samego sklepu
-    public Double select_results(ArrayList<Result> listOfResults) {
-        /*
-        ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
+    //zwraca sumaryczny koszt dostawy produktow z listy (uwzgledniajac czy sa z tego samego sklepu)
+    public Double count_shipping(ArrayList<Result> listOfResults) {
 
-        teams.add(new ArrayList<Result>());
-        teams.add(new ArrayList<Result>());
-        teams.add(new ArrayList<Result>());
-
-        for (Product p : products) {
-            try {
-                teams.get(0).add(p.Get_Results().get(0));
-                teams.get(1).add(p.Get_Results().get(1));
-                teams.get(2).add(p.Get_Results().get(2));
-
-            }
-            catch (Exception e) {
-
-            }
-        }
-        */
         ArrayList<ArrayList<Result>> shops = new ArrayList<ArrayList<Result>>(); // w tej liscie trzymamy listy produktow o tych samych shop_id
 
-        //for (ArrayList<Result> team : teams) {
         for (Result r : listOfResults) {
             if (shops.isEmpty()) {
                 shops.add(new ArrayList());  // utworz nowa liste dla tego shop_id
@@ -579,7 +560,6 @@ public class Skapiec{
                 }
             }
         }
-        //}
 
         Double summaryShipping = 0.0;
         for (ArrayList<Result> shop : shops) {// i teraz bierzemy maks. koszty dostawy dla kazdego sklepu
