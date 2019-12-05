@@ -145,19 +145,6 @@ public class Skapiec{
                     }
                 }
             }
-            /*
-        System.out.println(top.size());
-        ListComparator<Result> w  = new ListComparator<Result>();
-        for(ArrayList<Result> re: top){
-            for(Result q:re){
-                System.out.println(q.getName()+" "+q.getSum());
-            }
-            System.out.println("koszt sumaryczy zestawienia: "+ w.count_sum(re));
-            System.out.println("koniec zestawienia");
-        }
-             */
-
-
            //usuwamy duplikaty
         ArrayList<ArrayList<Result>> top3 = new ArrayList<ArrayList<Result>>();
         for(ArrayList<Result> arrayList: top){
@@ -165,8 +152,6 @@ public class Skapiec{
                 top3.add(arrayList);
             }
         }
-        //TODO: FUNKCJA KTORA UWZGLEDNI NAM KOSZTY DOSTAWY GDY PRODUKTY W TYM SAMYM SKLEPIE
-        //////FUNKCJA KTORA
 
         //posortować top3 po sumie kosztow list
         top3.sort(new ListComparator<Result>());
@@ -175,70 +160,9 @@ public class Skapiec{
         for(int i = top3.size()-1;i>2;i--){
             top3.remove(i);
         }
-        /*
-        System.out.println(top3.size());
-        for(ArrayList<Result> re: top3){
-                for(Result q:re){
-                    System.out.println(q.getName()+" "+q.getSum());
-                }
-                System.out.println("koszt sumaryczy zestawienia: "+ w.count_sum(re));
-                System.out.println("koniec zestawienia");
-            }
-
-         */
-
             return top3;
         }
 
-        /*
-        public Double count_sum_ofTeam(ArrayList<Result> results){
-        Double sum = 0.0;
-            for(Result r:results){
-                sum+=r.getSum();
-            }
-            return sum;
-        }
-        */
-        /*
-        for(ArrayList<ArrayList<Result>> r:shops){
-            for(int i=0;i<r.size();i++){
-                teams.add(new ArrayList<Result>());
-                for(int j=0;j<r.get(i).size();j++){
-                    if(r.get(i).get(0))
-                    teams.get(i).add(r.get(i).get(0));
-
-                }
-            }
-        }
-
-         */
-            /*
-        for (Product p:products){
-            for(Result r:product.Get_Results()){
-                if(shops.isEmpty()){
-                    shops.get(0).add(r);
-                }
-                else{
-                    for(int i=0; i<shops.size();i++){
-                        if(shops.get(i).get(0).getShop_id()==r.getShop_id()){
-                            shops.get(i).add(r);
-                        }
-                        else{
-                            shops.add(new ArrayList<Result>());
-                            shops.get(i+1).add(r);
-                        }
-                    }
-                }
-            }
-        }
-
-             */
-            /*
-        for(ArrayList<Result> r:shops){
-            r.sort(Result::compareTo);
-        }
-
-             */
 
     //funkcja szukająca najmniejszej dostawy
     //dziala
@@ -485,54 +409,6 @@ public class Skapiec{
         }
 
     }
-
-   //funkcja sumujaca koszty wynikow  dla zestawien
-    //niepotrzebna
-    /*
-    public ArrayList<Double> sum_costs(){
-        ArrayList<Double> sum = new ArrayList<Double>();
-        ArrayList<ArrayList<Result>> teams = new ArrayList<ArrayList<Result>>();
-
-        teams.add(new ArrayList<Result>());
-        teams.add(new ArrayList<Result>());
-        teams.add(new ArrayList<Result>());
-
-        for (Product p : products) {
-            try {
-                teams.get(0).add(p.Get_Results().get(0));
-
-            }
-            catch (Exception e) {
-
-            }
-            try {
-                teams.get(1).add(p.Get_Results().get(1));
-
-            }
-            catch (Exception e) {
-
-            }
-            try {
-                teams.get(2).add(p.Get_Results().get(2));
-
-            }
-            catch (Exception e) {
-
-            }
-        }
-
-        Double current_sum = 0.0;
-        for(ArrayList<Result> results:teams){
-            for(Result r:results){
-                current_sum+=r.getCost();
-                //System.out.println(r.getName()+current_sum);
-            }
-            sum.add(current_sum);
-            current_sum=0.0;
-        }
-        return sum;
-    }
-     */
 
     //zwraca sumaryczny koszt dostawy produktow z listy (uwzgledniajac czy sa z tego samego sklepu) (funkcja przeniesiona do ListComparator, ale zostawiam na razie tez tutaj)
     public Double count_shipping(ArrayList<Result> listOfResults) {
@@ -826,9 +702,6 @@ public class Skapiec{
         long timeElapsed = finish - start; //czas trwania programu
 
         System.out.println("Wyszukanu w ciągu:"+timeElapsed/1000+" s");
-        //System.out.println(controller.select_results().get(0));
-        //System.out.println(controller.select_results().get(1));
-        System.out.println(controller.choose_results().get(0));
 
     }
 

@@ -95,12 +95,10 @@ public class Servlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1>Wyniki wyszukiwania</h1>");
-        /// divy kolo siebie w jednym produkcie!!
         //sumy zestawien!!!
         ListComparator<Result> r = new ListComparator<>();
         ArrayList<ArrayList<Result>> top3 = new ArrayList<ArrayList<Result>>();
         top3 = skapiec.choose_results();
-        //System.out.println(skapiec.getProducts().get(0).Get_Results().size());
 
         for(int i=0;i<top3.size();i++){
             out.println("<h3>Zestawienie: "+(i+1)+"</h3>");
@@ -123,6 +121,9 @@ public class Servlet extends HttpServlet {
                 out.println("</div>");
                 out.println("</div>");
             }
+            out.println("</div>");
+            out.println("<div class=\"product-cost\">");
+            out.println("<h3>Suma zestawienia "+(i+1)+": " + r.count_sum(top3.get(i)) + "</h3>");
             out.println("</div>");
         }
 

@@ -13,7 +13,7 @@ public class Product {
 
     public Product(String name, int count, Double[] range)
     {
-        this.name = name;//.replace(" ", "+"); // olus <3
+        this.name = name;
         this.count = count;
         this.range = range;
         this.without_range = false;
