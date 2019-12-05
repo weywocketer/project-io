@@ -9,12 +9,14 @@ public class Product {
     private Double[] range;
     final private Double min_rate = 4.0;
     private ArrayList<Result> results = new ArrayList<Result>();
+    private boolean without_range;
 
     public Product(String name, int count, Double[] range)
     {
         this.name = name;//.replace(" ", "+"); // olus <3
         this.count = count;
         this.range = range;
+        this.without_range = false;
 
     }
 
@@ -32,6 +34,8 @@ public class Product {
 
     public ArrayList<Result> Get_Results(){return results;}
 
+    public boolean Get_without_range(){return without_range;}
+
     public void Set_Range(Double[] range){this.range=range;}
 
     public void Set_Name(String name){
@@ -45,6 +49,9 @@ public class Product {
     public void Set_Count(ArrayList<Result> results){ this.results = results; }
 
     public void Set_Results(ArrayList<Result> results){this.results = results;}
+
+    public void Set_Without_range(Boolean without_range){this.without_range = without_range;}
+
 
     public static void main(String args[]){
 

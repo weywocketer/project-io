@@ -81,9 +81,61 @@ public class Skapiec{
 
                 finish = System.currentTimeMillis();
                 timeElapsed = finish - start;
-            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<4);
+            }while (search_site.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<3);
         }
         product.Get_Results().sort(Result::compareTo); //SORTOWNIE!!!
+        if(product.Get_Results().isEmpty()){
+            product.Set_Without_range(true);
+            connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/" + product.Get_Name());
+            document= connect.get();
+            no_results = document.select("p.content"); //gdy brak wyników
+            Elements search_site2;//strony z wynikami wyszukiwania
+            if (no_results.text().equals("Brak produktów dla wyszukiwanej frazy."))
+            {
+                System.out.println("BRAK PRODUKTÓW");
+            }
+            else {
+                long finish;
+                long start = System.currentTimeMillis();
+                long timeElapsed ;
+                do{
+                    // connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/" + product.Get_Name()+"/"+i);
+                    document = connect.get();//łączenie - strona z wyszukiwaniami
+                    // trzeba jeszcze opcje gdy pojawi się 1 produkt - bo wtedy nic nie znajduje XDD
+                    search_site2 = document.select("a.pager-btn.arrow.right");
+                    Elements box = document.select("div.box-row.js"); //box
+
+                    Elements more_info;// = document.select("a.more-info"); //strona z produktem na Skapiec
+                    Elements compare_link;//= document.select("a.compare-link-1"); //strona z produktem w wielu sklepach
+                    ArrayList<Thread> threads = new ArrayList<Thread>();
+                    for (Element box1 : box) {
+                        this.boxe = box1;
+                        this.product = product;
+                        //run();
+                        threads.add( new Thread(new Runnable() {
+                            public void run() {
+                                try {
+                                    Research_without_range(box1, product);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }));
+                    }
+                    for (Thread t:threads){
+                        t.run();
+                    }
+
+                    for (Element elem : search_site2) { // przelacznie po kolejnych stronach wynikow wyszukiwania
+                        connect = Jsoup.connect("https://www.skapiec.pl" + elem.attr("href"));
+                    }
+
+                    finish = System.currentTimeMillis();
+                    timeElapsed = finish - start;
+                }while (search_site2.size() == 1 && product.Get_Results().size()<50 && timeElapsed/1000<3);
+            }
+
+        }
 
     }
 
@@ -553,6 +605,206 @@ public class Skapiec{
             summaryShippings.add(summaryShipping);
 
         return summaryShippings;
+    }
+
+//funkcja szukajaca wynikow bez zakreus ceny
+    public void Research_without_range(Element box1, Product product) throws IOException {
+        String result_name ="";
+        String result_link="";
+        Double result_cost;
+        Double min_result_shipping;
+        Double max_result_shipping;
+        Integer result_shop_id;
+        //Double box2 = Double.parseDouble(box1.select("strong.price.gtm_sor_price").text().replace(" zł", "").replace(",", ".").replace("od ", "").replace(" ", ""));
+       // if (box2 >= product.get_Range()[0] && box2 <= product.get_Range()[1]) {
+            //JEDEN PRODUKT JEDEN SKLEP
+            Elements more_info = box1.select("a.more-info"); //jeden produkt jeden sklep
+            ////////////////////////////////////////////////
+
+            Connection connect = Jsoup.connect("https://www.skapiec.pl" + more_info.attr("href"));
+            Document document = connect.get();//łączenie
+            Elements name = document.select("h1");
+            Elements opinion;//opinia sklepu hmmm gwiazdki....
+            Elements nr_opinions;//liczba opinii sklepu
+            Elements shipping;//koszt dostawy
+            Elements free_shipping;//darmowa dostawa
+            Elements link;//link do sklepu
+            Elements shop_ids;
+            Elements products = document.select("div.offers-list:nth-child(2) > ul:nth-child(1) > li:nth-child(1)"); //wybieramy prostokaty
+
+            for(Element p: products)
+            {
+                if (!p.select("span.price.gtm_or_price").text().isEmpty()){
+                    //cena double
+                    Double p_product = Double.parseDouble(p.select("span.price.gtm_or_price").first().text().replace(" zł","").replace(" ","").replace(",","."));
+                   // if (p_product>=product.get_Range()[0] && p_product<=product.get_Range()[1]){ //sprawdzamy cene
+                        //liczba opinii
+                        nr_opinions = p.select("span.counter"); //liczba opinii sklepu
+                        if (!nr_opinions.text().isEmpty()) { //sprawdzenie czy brak opinii
+                            if (Integer.parseInt(nr_opinions.first().text()) >= 50) {
+                                //"gwiazdki"
+                                opinion = p.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
+                                if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
+                                    //link do mozliwych dostaw
+                                    shipping = p.select("a.delivery-cost.link.gtm_oa_shipping");
+                                    free_shipping = p.select("span.delivery-cost.free-delivery.badge.gtm_bdg_fd");
+                                    if(free_shipping.size()!=0){
+                                        //nazwa wyniku
+                                        result_name = name.text();
+                                        //System.out.println("Nazwa: "+result_name);
+
+                                        //link do sklepu
+                                        link = p.select("a.offer-row-item.gtm_or_row");
+                                        result_link ="https://www.skapiec.pl" + link.attr("href");
+                                        //System.out.println("Link do sklepu: "+result_link);
+
+                                        //cena wyniku
+                                        result_cost = p_product;
+                                        //System.out.println("Cena: "+result_cost);
+
+                                        //koszt dostawy
+                                        min_result_shipping = 0.0;
+                                        max_result_shipping = 0.0;
+                                        //System.out.println("Dostawa: "+result_shipping);
+
+                                        //id sklepu
+                                        shop_ids = p.select("li");
+                                        String shop_id = shop_ids.attr("data-dealer-id");
+                                        result_shop_id = Integer.parseInt(shop_id);
+                                        //System.out.println(shop_id);
+
+                                        product.Get_Results().add(new Result(result_name, result_link,result_cost,min_result_shipping,max_result_shipping,result_shop_id));
+                                    }
+                                    else if (shipping.size() != 0) {
+                                        //jezeli jest dostawa
+                                        if ( searchShipping("https://www.skapiec.pl" + shipping.attr("href"))!= null) {
+                                            //nazwa wyniku
+                                            result_name = name.text();
+                                            // System.out.println("Nazwa: "+result_name);
+
+                                            //link do sklepu
+                                            link = p.select("a.offer-row-item.gtm_or_row");
+                                            result_link ="https://www.skapiec.pl" + link.attr("href");
+                                            //System.out.println("Link do sklepu: "+result_link);
+
+                                            //cena wyniku
+                                            result_cost = p_product;
+                                            //System.out.println("Cena: "+result_cost);
+
+                                            //koszt dostawy
+                                            min_result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"))[0];
+                                            max_result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"))[1];
+                                            //System.out.println("Dostawa: "+result_shipping);
+
+                                            //id sklepu
+                                            shop_ids = p.select("li");
+                                            String shop_id = shop_ids.attr("data-dealer-id");
+                                            result_shop_id = Integer.parseInt(shop_id);
+                                            //System.out.println(shop_id);
+
+                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,min_result_shipping,max_result_shipping,result_shop_id));
+
+                                        }
+                                    }
+                                }
+                            }
+                       // }
+                    }
+                }
+            }
+
+
+
+//-----------------------------jeden produkt wiele sklepów--------------------------------------------------------------
+            Elements compare_link = box1.select("a.compare-link-1");
+            connect = Jsoup.connect("https://www.skapiec.pl" + compare_link.attr("href"));
+            document = connect.get();//łączenie
+            name = document.select("h1");
+            products = document.select("div.offers-list:nth-child(2) > ul:nth-child(1) > li:nth-child(1)"); //wybieramy prostokaty w ktorych sa dane
+            //Thread t2 = new Thread(new MultiTask(document,product));
+            //t2.run();
+
+            for(Element p: products)
+            {
+                if (!p.select("span.price.gtm_or_price").text().isEmpty()){
+                    //cena double
+                    Double p_product = Double.parseDouble(p.select("span.price.gtm_or_price").first().text().replace(" zł","").replace(" ","").replace(",","."));
+                    //if (p_product>=product.get_Range()[0] && p_product<=product.get_Range()[1]){ //sprawdzamy cene
+                        //liczba opinii
+                        nr_opinions = p.select("span.counter"); //liczba opinii sklepu
+                        if (!nr_opinions.text().isEmpty()) { //sprawdzenie czy brak opinii
+                            if (Integer.parseInt(nr_opinions.first().text()) >= 50) {
+                                //"gwiazdki"
+                                opinion = p.select("span.stars.green"); //opinia sklepu hmmm gwiazdki....
+                                if (Double.parseDouble(opinion.attr("style").replace("width: ", "").replace("%", "")) >= product.Get_Min_Rate() * 100 / 5) {
+                                    shipping = p.select("a.delivery-cost.link.gtm_oa_shipping");
+                                    free_shipping = p.select("span.delivery-cost.free-delivery.badge.gtm_bdg_fd");
+                                    if(free_shipping.size()!=0){
+                                        //nazwa wyniku
+                                        result_name = name.text();
+                                        //System.out.println("Nazwa: "+result_name);
+
+                                        //link do sklepu
+                                        link = p.select("a.offer-row-item.gtm_or_row");
+                                        result_link ="https://www.skapiec.pl" + link.attr("href");
+                                        //System.out.println("Link do sklepu: "+result_link);
+
+                                        //cena wyniku
+                                        result_cost = p_product;
+                                        //System.out.println("Cena: "+result_cost);
+
+                                        //koszt dostawy
+                                        min_result_shipping = 0.0;
+                                        max_result_shipping = 0.0;
+                                        //System.out.println("Dostawa: "+result_shipping);
+
+                                        //id sklepu
+                                        shop_ids = p.select("li");
+                                        String shop_id = shop_ids.attr("data-dealer-id");
+                                        result_shop_id = Integer.parseInt(shop_id);
+                                        //System.out.println(shop_id);
+
+                                        product.Get_Results().add(new Result(result_name, result_link,result_cost,min_result_shipping,max_result_shipping, result_shop_id));
+                                    }
+                                    if (shipping.size() != 0) {
+                                        //jezeli jest dostawa
+                                        if ( searchShipping("https://www.skapiec.pl" + shipping.attr("href"))!= null) {
+                                            //nazwa wyniku
+                                            result_name = name.text();
+                                            // System.out.println("Nazwa: "+result_name);
+
+                                            //link do sklepu
+                                            link = p.select("a.offer-row-item.gtm_or_row");
+                                            result_link ="https://www.skapiec.pl" + link.attr("href");
+                                            //System.out.println("Link do sklepu: "+result_link);
+
+                                            //cena wyniku
+                                            result_cost = p_product;
+                                            //System.out.println("Cena: "+result_cost);
+
+                                            //koszt dostawy
+                                            min_result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"))[0];
+                                            max_result_shipping = searchShipping("https://www.skapiec.pl" + shipping.attr("href"))[1];
+                                            //System.out.println("Dostawa: "+result_shipping);
+
+                                            //id sklepu
+                                            shop_ids = p.select("li");
+                                            String shop_id = shop_ids.attr("data-dealer-id");
+                                            result_shop_id = Integer.parseInt(shop_id);
+                                            //System.out.println(shop_id);
+
+                                            product.Get_Results().add(new Result(result_name, result_link,result_cost,min_result_shipping,max_result_shipping,result_shop_id ));
+
+                                        }
+                                    }
+                                }
+                            }
+                       // }
+                    }
+                }
+            }
+       // }
+
     }
 
 
