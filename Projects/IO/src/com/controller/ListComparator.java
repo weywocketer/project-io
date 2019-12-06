@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 //klasa do sortowania list list
 class ListComparator<T extends Comparable<Result>> implements Comparator<ArrayList<Result>> {
+
+    //porownywanie list, po
     @Override
     public int compare(ArrayList<Result> o1, ArrayList<Result> o2) {
         for (int i = 0; i < Math.min(o1.size(), o2.size()); i++) {

@@ -38,7 +38,6 @@ public class Skapiec{
             do{
                // connect = Jsoup.connect("https://www.skapiec.pl/szukaj/w_calym_serwisie/" + product.Get_Name()+"/"+i);
                 document = connect.get();//łączenie - strona z wyszukiwaniami
-                // trzeba jeszcze opcje gdy pojawi się 1 produkt - bo wtedy nic nie znajduje XDD
                 search_site = document.select("a.pager-btn.arrow.right");
                 Elements box = document.select("div.box-row.js"); //box
 
@@ -141,7 +140,6 @@ public class Skapiec{
                     //products.get(j).Get_Results().size()
                     if(!products.get(j).Get_Results().isEmpty()) {
                         top.get(i).add(products.get(j).Get_Results().get(r.nextInt(products.get(j).Get_Results().size())));
-                        //wstawic opcje zeby zminilo koszt wysylki gdy znajdujemy produkty w jednym sklepie
                     }
                 }
             }
@@ -164,8 +162,7 @@ public class Skapiec{
         }
 
 
-    //funkcja szukająca najmniejszej dostawy
-    //dziala
+    //funkcja szukająca najmniejszej i najwiekszej dostawy
     public Double[] searchShipping(String url) throws IOException{
         ArrayList<Double> shipping_prices = new ArrayList<Double>();
         Double[] max_min_ship_prices = new Double[2];

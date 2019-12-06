@@ -29,7 +29,7 @@ public class Servlet extends HttpServlet {
         ArrayList<Thread> threads = new ArrayList<Thread>(); //do watkow
         //dodajemy do poszczegolnych list podane dane przez użytkownika
 
-        //ZMIENIC OZNACZENIA W STRONCE!!!! NP NAME0,NAME1, ...NAME4
+        //pobieranie danych wpisanych przez uzytkownika
         for(int i = 0;i<5;i++){
             if(!request.getParameter("name"+i).isEmpty()) {
                 try {
@@ -95,11 +95,13 @@ public class Servlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1>Wyniki wyszukiwania</h1>");
-        //sumy zestawien!!!
+      //do sortowania list
         ListComparator<Result> r = new ListComparator<>();
         ArrayList<ArrayList<Result>> top3 = new ArrayList<ArrayList<Result>>();
-        top3 = skapiec.choose_results(); //wybor wynikow
+        top3 = skapiec.choose_results(); //wybor wynikow!!! ważne
 
+
+        //wypisanie zestawien
         for(int i=0;i<top3.size();i++){
             out.println("<h3>Zestawienie: "+(i+1)+"</h3>");
             out.println("<div class=\"products-result\">");
