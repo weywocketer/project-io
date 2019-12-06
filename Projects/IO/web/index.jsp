@@ -22,8 +22,6 @@
 
   <h1>SkąpiecPRO - find the best products!</h1>
 
-  <!-- dodac ograniczenia na wpisywanie itd -->
-
 
       <form id="form" method="get" name="Servlet" action="Servlet">
         <div class="product-forms">
