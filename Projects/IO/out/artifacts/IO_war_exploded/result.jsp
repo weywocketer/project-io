@@ -11,7 +11,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -23,24 +23,10 @@
 </head>
 
 <body>
-  <div class="result-page">
-    <div class="found-product">
-      <h4>${result00}</h4>
-    </div>
-    <div class="product-cost">
-      Koszt produktu: ${cost00} PLN
-    </div>
-    <div class="product-shipping">
-      Koszt dostawy: ${shipping00} PLN
-    </div>
-    <div class="link-product">
-      <a href="${link00}">Link do produktu w sklepie</a>
-    </div>
-    <div class="back-container">
-      <a class="back-to-homepage" href="index.jsp">Szukaj innych produktów</a>
-    </div>
-  </div>
-
+<h1>Wyniki wyszukiwania</h1>
+<div>
+  <label ></label>/>
+</div>
 
 </body>
 

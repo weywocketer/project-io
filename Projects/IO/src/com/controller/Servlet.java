@@ -15,6 +15,7 @@ public class Servlet extends HttpServlet {
 
         //RequestDispatcher view = request.getRequestDispatcher("/Home.jsp");
         //view.include(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,11 +24,12 @@ public class Servlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         //tworzenie parametrów
         ArrayList<String> names = new ArrayList<String>();
-        ArrayList<Integer> counts = new ArrayList<Integer>();
+        //ArrayList<Integer> counts = new ArrayList<Integer>();
         ArrayList<Double[]> ranges = new ArrayList<Double[]>();
         //ArrayList<Double> ranges2 = new ArrayList<Double>();
         ArrayList<Thread> threads = new ArrayList<Thread>(); //do watkow
         //dodajemy do poszczegolnych list podane dane przez użytkownika
+
 
         //pobieranie danych wpisanych przez uzytkownika
         for(int i = 0;i<5;i++){
@@ -35,7 +37,7 @@ public class Servlet extends HttpServlet {
                 try {
                     names.add(request.getParameter("name" + i));
                     request.setAttribute("name"+i,request.getParameter("name" + i)); //nazwa wpisana przez użytkownika
-                    counts.add(Integer.parseInt(request.getParameter("count" + i)));
+                    //counts.add(Integer.parseInt(request.getParameter("count" + i)));
                     Double[] range = new Double[2];
                     range[0] = Double.parseDouble(request.getParameter("range1" + i));
                     range[1] = Double.parseDouble(request.getParameter("range2" + i));
@@ -53,6 +55,10 @@ public class Servlet extends HttpServlet {
             }
 
         }
+
+        //-----------czas-----------------
+        long start = System.currentTimeMillis();// czas rozpoczecia
+
         Skapiec skapiec = new Skapiec();
 
         //tworzymy obiekty klasy Product i dodajemy do naszej listy produktow klasy Skapiec
@@ -65,7 +71,7 @@ public class Servlet extends HttpServlet {
         }
         else {
             for (int i = 0; i < names.size(); i++) {
-                skapiec.getProducts().add(new Product(names.get(i), counts.get(i), ranges.get(i)));
+                skapiec.getProducts().add(new Product(names.get(i),  ranges.get(i)));
             }
         }
 
@@ -87,6 +93,24 @@ public class Servlet extends HttpServlet {
             t.run();
         }
 
+        /*
+        for (Product p:skapiec.getProducts()){
+            for(Result r:p.Get_Results()){
+                System.out.println(r.getName());
+            }
+        }*/
+        //do policzenia sumy zestawienia
+        ListComparator<Result> r = new ListComparator<>();
+
+        //wybieramy top 3
+        ArrayList<ArrayList<Result>> top3 = new ArrayList<ArrayList<Result>>();
+        top3 = skapiec.choose_results(); //wybor wynikow!!! ważne
+
+       // request.setAttribute();
+        //RequestDispatcher rd = getServletContext().getRequestDispatcher("/Servlet");
+        //rd.forward(request, response);
+        //response.sendRedirect(request.getContextPath() + "/result.jsp");
+
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset=\"UTF-8\">");
@@ -96,10 +120,6 @@ public class Servlet extends HttpServlet {
         out.println("<body>");
         out.println("<h1>Wyniki wyszukiwania</h1>");
       //do sortowania list
-        ListComparator<Result> r = new ListComparator<>();
-        ArrayList<ArrayList<Result>> top3 = new ArrayList<ArrayList<Result>>();
-        top3 = skapiec.choose_results(); //wybor wynikow!!! ważne
-
 
         //wypisanie zestawien
         for(int i=0;i<top3.size();i++){
@@ -153,6 +173,11 @@ public class Servlet extends HttpServlet {
         out.println("</body>");
         out.println("</html>");
         //request.getRequestDispatcher("result.jsp").forward(request, response);
+
+        //-----koniec czasu -------
+        long finish = System.currentTimeMillis(); //czas zakonczenia
+        long timeElapsed = finish - start; //czas trwania programu
+        System.out.println(timeElapsed/1000);
 
     }
 

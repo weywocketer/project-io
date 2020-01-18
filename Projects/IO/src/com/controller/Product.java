@@ -5,16 +5,14 @@ import java.util.ArrayList;
 public class Product {
 
     private String name;
-    private int count;
     private Double[] range;
     final private Double min_rate = 4.0;
     private ArrayList<Result> results = new ArrayList<Result>();
     private boolean without_range;
 
-    public Product(String name, int count, Double[] range)
+    public Product(String name, Double[] range)
     {
         this.name = name;
-        this.count = count;
         this.range = range;
         this.without_range = false;
 
@@ -23,10 +21,6 @@ public class Product {
     public Product(){}
 
     public String Get_Name(){ return name; }
-
-    public int Get_Count(){
-        return count;
-    }
 
     public Double[] get_Range(){return range;}
 
@@ -40,10 +34,6 @@ public class Product {
 
     public void Set_Name(String name){
         this.name = name;
-    }
-
-    public void Set_Count(int count){
-        this.count = count;
     }
 
     public void Set_Count(ArrayList<Result> results){ this.results = results; }

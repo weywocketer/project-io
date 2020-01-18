@@ -23,15 +23,12 @@
   <h1>SkąpiecPRO - find the best products!</h1>
 
 
-      <form id="form" method="get" name="Servlet" action="Servlet">
+      <form id="form" method="get" name="Servlet" action="Servlet" >
         <div class="product-forms">
           <div class="product-form">
             <div>
               <label>Nazwa produktu</label> <input type="text" name="name0" size="50"
                                                    placeholder="Wprowadź nazwę produktu" />
-            </div>
-            <div>
-              <label>Ilość</label> <input type="text" name="count0" size="50" placeholder="Wprowadź ilość" />
             </div>
             <div>
               <label>Cena</label>
@@ -48,9 +45,6 @@
                 placeholder="Wprowadź nazwę produktu" />
             </div>
             <div>
-              <label>Ilość</label> <input type="text" name="count1" size="50" placeholder="Wprowadź ilość" />
-            </div>
-            <div>
               <label>Cena</label>
               <div class="form-cena">
                 <h5>Od</h5> <input type="text" name="range11" size="50" id="input-cena" placeholder="Cena minimalna" />
@@ -63,9 +57,6 @@
             <div>
               <label>Nazwa produktu</label> <input type="text" name="name2" size="50"
                 placeholder="Wprowadź nazwę produktu" />
-            </div>
-            <div>
-              <label>Ilość</label> <input type="text" name="count2" size="50" placeholder="Wprowadź ilość" />
             </div>
             <div>
               <label>Cena</label>
@@ -82,9 +73,6 @@
                 placeholder="Wprowadź nazwę produktu" />
             </div>
             <div>
-              <label>Ilość</label> <input type="text" name="count3" size="50" placeholder="Wprowadź ilość" />
-            </div>
-            <div>
               <label>Cena</label>
               <div class="form-cena">
                 <h5>Od</h5> <input type="text" name="range13" size="50" id="input-cena" placeholder="Cena minimalna" />
@@ -97,9 +85,6 @@
             <div>
               <label>Nazwa produktu</label> <input type="text" name="name4" size="50"
                 placeholder="Wprowadź nazwę produktu" />
-            </div>
-            <div>
-              <label>Ilość</label> <input type="text" name="count4" size="50" placeholder="Wprowadź ilość" />
             </div>
             <div>
               <label>Cena</label>
