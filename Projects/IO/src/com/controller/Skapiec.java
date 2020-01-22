@@ -16,10 +16,8 @@ public class Skapiec{
     private ArrayList<Product> products = new ArrayList<Product>(); //lista z produktami
     private long start;
     private long finish;
-    private long czas;
-    //private ArrayList<Double> sum_cost = new ArrayList<Double>(); //lista z wynikami
-    //Element boxe;
-    //Product product;
+    private long czas; //im lepiej sie okresli przedmiot tym lepiej dla czasu :')
+
 
 // wyszukuje wyniki
     public  void Search(Product product) throws IOException {
@@ -40,11 +38,11 @@ public class Skapiec{
             // System.out.println("Jest cos!!!!!");
             //search_site = document.select("a.pager-btn.arrow.right"); //guzik nastepna strona, jezeli jest to przechodzimy po nastepnych stronach
             // System.out.println("Znalazlem cos!!");
-            //wezmiemy sb tylko pierwsz 20 najtanszych produktow
-            for (int i = 0; i < 10; i++) {
+            //wezmiemy sb tylko pierwsz 5 najtanszych produktow
+            for (int i = 0; i < 5; i++) {
                 finish = System.currentTimeMillis();
                  czas = finish - start;
-                if (product.Get_Results().size() < 10 && czas / 1000 < 5) {
+                if (product.Get_Results().size() < 5 || czas / 1000 < 5) {
                     // System.out.println("jeszcze moge szukac!");
                     document = connect.get();
                     search_site = document.select("a.pager-btn.arrow.right"); //guzik nastepna strona, jezeli jest to przechodzimy po nastepnych stronach
@@ -244,7 +242,7 @@ public class Skapiec{
     public void Research(Element box1, Product product) throws IOException {
         finish = System.currentTimeMillis();
         czas = finish - start;
-        if(czas/1000<5) {
+        if(czas/1000<5 && product.Get_Results().size()<=5) { //akt desperacji
             String result_name = "";
             String result_link = "";
             Double result_cost;
@@ -480,7 +478,7 @@ public class Skapiec{
     public void Research_without_range(Element box1, Product product) throws IOException {
         finish = System.currentTimeMillis();
         czas = finish - start;
-        if(czas/1000<5) {
+        if(czas/1000<5 && product.Get_Results().size()<5) {
             String result_name = "";
             String result_link = "";
             Double result_cost;
